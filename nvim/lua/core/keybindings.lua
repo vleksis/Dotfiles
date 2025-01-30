@@ -29,10 +29,10 @@ vim.keymap.set('n', 'n', 'nzzzv', opts)
 vim.keymap.set('n', 'N', 'Nzzzv', opts)
 
 -- Resize with arrows
-vim.keymap.set('n', '<Up>', ':resize -2<CR>', opts)
-vim.keymap.set('n', '<Down>', ':resize +2<CR>', opts)
-vim.keymap.set('n', '<Left>', ':vertical resize -2<CR>', opts)
-vim.keymap.set('n', '<Right>', ':vertical resize +2<CR>', opts)
+-- vim.keymap.set('n', '<Up>', ':resize -2<CR>', opts)
+-- vim.keymap.set('n', '<Down>', ':resize +2<CR>', opts)
+-- vim.keymap.set('n', '<Left>', ':vertical resize -2<CR>', opts)
+-- vim.keymap.set('n', '<Right>', ':vertical resize +2<CR>', opts)
 
 -- Buffers
 vim.keymap.set('n', '<Tab>', ':bnext<CR>', opts)
@@ -71,5 +71,20 @@ vim.keymap.set('v', 'p', '"_dP', opts)
 -- Diagnostic keymaps
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
-vim.keymap.set('n', '<leader>d', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
+vim.keymap.set('n', '<leader>dm', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
+
+
+-- Format entire file in normal mode
+vim.keymap.set('n', '<leader>f', ':lua vim.lsp.buf.format()<CR>', { noremap = true, silent = true, desc = "Format the whole file"})
+
+-- Format selected block in visual mode
+vim.keymap.set('v', '<leader>f', "gq", { noremap = true, silent = true, desc = "Format selected" })
+
+vim.keymap.set('n', '<leader>db', '<cmd> DapToggleBreakpoint <CR>', { desc = "Add breakpoint at line"})
+vim.keymap.set('n', '<leader>dc', '<cmd> DapContinue <CR>', { desc = "Run or continue debug"})
+vim.keymap.set('n', '<leader>de', '<cmd> DapDisconnect', { desc = "Stop debug"})
+vim.keymap.set('n', '<F10>', '<cmd> DapStepOver <CR>')
+vim.keymap.set('n', '<F11>', '<cmd> DapStepInto <CR>')
+vim.keymap.set('n', '<F12>', '<cmd> DapStepOut <CR>')
+

@@ -1,0 +1,35 @@
+// -*- mode: jsonc -*-
+{
+    "margin-left": 10,
+    "margin-right": 10,
+    "margin-top": 5,
+    "margin-bottom": 5,
+    // "layer": "top", // Waybar at top layer
+    // "position": "bottom", // Waybar positionj(top|bottom|left|right)
+    //"height": 25, // Waybar height (to be removed for auto height)
+     //"width": 1280, // Waybar width
+    "spacing": 4, // Gaps between modules (4px)
+    // Choose the order of the modules
+    "modules-left": [
+        "user",
+        "custom/appmenu",
+        "hyprland/submap",
+        "custom/dunst"
+    ],
+    "modules-center": [
+        "hyprland/workspaces",
+        "tray"
+    ],
+    "modules-right": [
+        "backlight",
+        //"battery",
+        "clock",
+
+        "group/hardware",
+        "hyprland/language",
+        //"network",
+        "pulseaudio"
+    ],
+
+    "include": ["~/.config/waybar/modules.jsonc"]
+}

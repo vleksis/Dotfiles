@@ -1,0 +1,7 @@
+@use "./style/general.scss";
+@use "./style/OSD.scss";
+@use "./style/notification.scss";
+
+// https://gitlab.gnome.org/GNOME/gtk/-/blob/gtk-3-24/gtk/theme/Adwaita/_colors-public.scss
+$fg-color: #{"@theme_fg_color"};
+$bg-color: #{"@theme_bg_color"};

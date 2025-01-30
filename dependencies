@@ -1,0 +1,20 @@
+lua
+luarocks
+noto-fonts
+noto-fonts-cjk
+noto-fonts-emoji
+otf-font-awesome
+ttf-font-awesome
+pavucontrol
+pulseaudio
+uwsm
+libnotify
+
+pacman:
+  pipewire
+  pipewire-pulse
+  wireplumber
+  xdg-desktop-portal-hyprland
+  openssh
+yay:
+  aylurs-gtk-shell-git

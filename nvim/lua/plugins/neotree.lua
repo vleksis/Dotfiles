@@ -145,8 +145,8 @@ return {
           ['<esc>'] = 'cancel', -- close preview or floating neo-tree window
           ['P'] = { 'toggle_preview', config = { use_float = true } },
           ['l'] = 'open',
-          ['S'] = 'open_split',
-          ['s'] = 'open_vsplit',
+          ['h'] = 'open_split',
+          ['v'] = 'open_vsplit',
           -- ["S"] = "split_with_window_picker",
           -- ["s"] = "vsplit_with_window_picker",
           ['t'] = 'open_tabnew',
@@ -317,8 +317,8 @@ return {
       },
     }
 
-    vim.cmd [[nnoremap \ :Neotree reveal<cr>]]
-    vim.keymap.set('n', '<leader>e', ':Neotree toggle position=left<CR>', { noremap = true, silent = true }) -- focus file explorer
+    vim.cmd [[nnoremap \ :Neotree position=left<cr>]]
+    vim.keymap.set('n', '<leader>e', ':Neotree toggle float<CR>', { noremap = true, silent = true }) -- focus file explorer
     vim.keymap.set('n', '<leader>ngs', ':Neotree float git_status<CR>', { noremap = true, silent = true }) -- open git status window
   end,
 }
