@@ -1,4 +1,3 @@
-
 return {
   "williamboman/mason.nvim",
   dependencies = {
@@ -11,10 +10,15 @@ return {
       "clangd",
       "clang-format",
       "codelldb",
+      'cmake-language-server',
 
       "lua-language-server",
       "luacheck",
-      "luaformatter"
+      "luaformatter",
+
+      "bash-language-server",
+      "shellcheck",
+      "shfmt",
     },
   },
 
@@ -30,4 +34,3 @@ return {
     }
   end,
 }
-

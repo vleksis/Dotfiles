@@ -52,12 +52,6 @@ vim.keymap.set('n', '<C-j>', ':wincmd j<CR>', opts)
 vim.keymap.set('n', '<C-h>', ':wincmd h<CR>', opts)
 vim.keymap.set('n', '<C-l>', ':wincmd l<CR>', opts)
 
--- Tabs
-vim.keymap.set('n', '<leader>to', ':tabnew<CR>', opts) -- open new tab
-vim.keymap.set('n', '<leader>tx', ':tabclose<CR>', opts) -- close current tab
-vim.keymap.set('n', '<leader>tn', ':tabn<CR>', opts) --  go to next tab
-vim.keymap.set('n', '<leader>tp', ':tabp<CR>', opts) --  go to previous tab
-
 -- Toggle line wrapping
 vim.keymap.set('n', '<leader>lw', '<cmd>set wrap!<CR>', opts)
 
@@ -72,7 +66,7 @@ vim.keymap.set('v', 'p', '"_dP', opts)
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
 vim.keymap.set('n', '<leader>dm', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
+vim.keymap.set('n', '<leader>dl', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
 
 
 -- Format entire file in normal mode
@@ -88,3 +82,16 @@ vim.keymap.set('n', '<F10>', '<cmd> DapStepOver <CR>')
 vim.keymap.set('n', '<F11>', '<cmd> DapStepInto <CR>')
 vim.keymap.set('n', '<F12>', '<cmd> DapStepOut <CR>')
 
+-- -- Normal Mode keybindings
+-- vim.api.nvim_set_keymap('n', '<S-j>', ':move .+1<CR>', { noremap = true, silent = true, desc = "Move current line down" })
+-- vim.api.nvim_set_keymap('n', '<S-k>', ':move .-2<CR>', { noremap = true, silent = true, desc = "Move current line up" })
+--
+-- -- Visual Mode keybindings
+-- vim.api.nvim_set_keymap('v', '<S-j>', ":move '>+1<CR>gv=gv", { noremap = true, silent = true, desc = "Move selected lines down" })
+-- vim.api.nvim_set_keymap('v', '<S-k>', ":move '<-2<CR>gv=gv", { noremap = true, silent = true, desc = "Move selected lines up" })
+--
+
+-- vim.api.nvim_set_keymap('i', '<C-j>', '<C-o>j', { noremap = true, silent = true, desc = "Move cursor down in Insert Mode" })
+-- vim.api.nvim_set_keymap('i', '<C-k>', '<C-o>k', { noremap = true, silent = true, desc = "Move cursor up in Insert Mode" })
+-- vim.api.nvim_set_keymap('i', '<C-h>', '<C-o>h', { noremap = true, silent = true, desc = "Move cursor left in Insert Mode" })
+-- vim.api.nvim_set_keymap('i', '<C-l>', '<C-o>l', { noremap = true, silent = true, desc = "Move cursor right in Insert Mode" })
