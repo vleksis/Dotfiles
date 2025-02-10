@@ -3,9 +3,6 @@ require 'core.init_lazy'
 require 'core.options'
 require 'core.keybindings'
 
--- TODO
--- FIX
-
 -- Set up plugins
 require('lazy').setup {
   spec = {
