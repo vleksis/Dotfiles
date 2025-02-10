@@ -12,7 +12,7 @@ return {
     local filename = {
       'filename',
       file_status = true, -- displays file status (readonly status, modified status)
-      path = 0, -- 0 = just filename, 1 = relative path, 2 = absolute path
+      path = 0,           -- 0 = just filename, 1 = relative path, 2 = absolute path
     }
 
     local hide_in_width = function()
@@ -33,10 +33,11 @@ return {
     local diff = {
       'diff',
       colored = false,
-      symbols = { added = ' ', modified = ' ', removed = ' ' }, -- changes diff symbols
+      symbols = { added = '[+]', modified = '[m]', removed = '[-]' }, -- changes diff symbols
       cond = hide_in_width,
     }
 
+    local navic = require("nvim-navic")
     require('lualine').setup {
       options = {
         icons_enabled = true,
@@ -66,8 +67,22 @@ return {
         lualine_z = {},
       },
       tabline = {},
+      winbar = {
+        lualine_a = { filename },
+        lualine_c = {
+          {
+            function()
+              local location = navic.get_location()
+              if location == "" then
+                location = " "
+              end
+              return location
+            end,
+            cond = function() return true end,
+          }
+        }
+      },
       extensions = { 'fugitive' },
     }
   end,
 }
-

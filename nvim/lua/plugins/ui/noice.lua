@@ -1,6 +1,6 @@
 -- Helper function to calculate the popup position.
 -- Here, we compute the row as the current line plus 2 rows, and set a fixed column.
-local function get_signature_position()
+local function get_shifted_position()
   return {
     row = vim.fn.line('.') + 2, -- position the popup 2 rows below the current cursor line
     -- col = "20",                 -- position at column 20; adjust as needed
@@ -24,7 +24,18 @@ return {
               style = 'rounded',
               padding = { 1, 2 },
             },
-            position = get_signature_position(),
+            position = get_shifted_position(),
+          },
+        },
+        hover = {
+          enabled = true, -- Enable noice's hover handler
+          view = "hover", -- (Optional) Specify a custom view (e.g. "hover", "popup")
+          opts = {
+            border = {
+              style = "rounded",
+              padding = { 1, 2 },
+            },
+            position = get_shifted_position()
           },
         },
 
