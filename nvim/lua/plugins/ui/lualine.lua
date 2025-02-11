@@ -50,6 +50,7 @@ return {
         disabled_filetypes = { 'alpha', 'neo-tree' },
         always_divide_middle = true,
       },
+
       sections = {
         lualine_a = { mode },
         lualine_b = { 'branch' },
@@ -66,7 +67,9 @@ return {
         lualine_y = {},
         lualine_z = {},
       },
+
       tabline = {},
+
       winbar = {
         lualine_a = { filename },
         lualine_c = {
@@ -82,6 +85,11 @@ return {
           }
         }
       },
+
+      inactive_winbar = {
+        lualine_a = { filename },
+      },
+
       extensions = { 'fugitive' },
     }
   end,

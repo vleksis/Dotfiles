@@ -35,10 +35,10 @@ vim.keymap.set('n', 'N', 'Nzzzv', opts)
 -- vim.keymap.set('n', '<Right>', ':vertical resize +2<CR>', opts)
 
 -- Buffers
-vim.keymap.set('n', '<Tab>', ':bnext<CR>', opts)
-vim.keymap.set('n', '<S-Tab>', ':bprevious<CR>', opts)
-vim.keymap.set('n', '<leader>x', ':bdelete!<CR>', opts) -- close buffer
-vim.keymap.set('n', '<leader>b', '<cmd> enew <CR>', opts) -- new buffer
+-- vim.keymap.set('n', '<Tab>', ':bnext<CR>', opts)
+-- vim.keymap.set('n', '<S-Tab>', ':bprevious<CR>', opts)
+-- vim.keymap.set('n', '<leader>x', ':bdelete!<CR>', opts) -- close buffer
+-- vim.keymap.set('n', '<leader>b', '<cmd> enew <CR>', opts) -- new buffer
 
 -- Window management
 vim.keymap.set('n', '<leader>v', '<C-w>v', opts) -- split window vertically
@@ -82,16 +82,3 @@ vim.keymap.set('n', '<F10>', '<cmd> DapStepOver <CR>')
 vim.keymap.set('n', '<F11>', '<cmd> DapStepInto <CR>')
 vim.keymap.set('n', '<F12>', '<cmd> DapStepOut <CR>')
 
--- -- Normal Mode keybindings
--- vim.api.nvim_set_keymap('n', '<S-j>', ':move .+1<CR>', { noremap = true, silent = true, desc = "Move current line down" })
--- vim.api.nvim_set_keymap('n', '<S-k>', ':move .-2<CR>', { noremap = true, silent = true, desc = "Move current line up" })
---
--- -- Visual Mode keybindings
--- vim.api.nvim_set_keymap('v', '<S-j>', ":move '>+1<CR>gv=gv", { noremap = true, silent = true, desc = "Move selected lines down" })
--- vim.api.nvim_set_keymap('v', '<S-k>', ":move '<-2<CR>gv=gv", { noremap = true, silent = true, desc = "Move selected lines up" })
---
-
--- vim.api.nvim_set_keymap('i', '<C-j>', '<C-o>j', { noremap = true, silent = true, desc = "Move cursor down in Insert Mode" })
--- vim.api.nvim_set_keymap('i', '<C-k>', '<C-o>k', { noremap = true, silent = true, desc = "Move cursor up in Insert Mode" })
--- vim.api.nvim_set_keymap('i', '<C-h>', '<C-o>h', { noremap = true, silent = true, desc = "Move cursor left in Insert Mode" })
--- vim.api.nvim_set_keymap('i', '<C-l>', '<C-o>l', { noremap = true, silent = true, desc = "Move cursor right in Insert Mode" })

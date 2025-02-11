@@ -5,25 +5,27 @@ return {
     'nvim-tree/nvim-web-devicons',
   },
   event = "VeryLazy",
-keys = {
-    { "<leader>bp", "<Cmd>BufferLineTogglePin<CR>", desc = "Toggle Pin" },
+  keys = {
+    { "<leader>bp", "<Cmd>BufferLineTogglePin<CR>",            desc = "Toggle Pin" },
+    { "<leader>bd", "<Cmd>bprevious<CR><Cmd>bd#<CR>",          desc = "Delete current buffer" },
+    { "<leader>bD", "<Cmd>bd<CR>",                             desc = "Delete current buffer with split" },
     { "<leader>bP", "<Cmd>BufferLineGroupClose ungrouped<CR>", desc = "Delete Non-Pinned Buffers" },
-    { "<leader>br", "<Cmd>BufferLineCloseRight<CR>", desc = "Delete Buffers to the Right" },
-    { "<leader>bl", "<Cmd>BufferLineCloseLeft<CR>", desc = "Delete Buffers to the Left" },
-    { "<S-h>", "<cmd>BufferLineCyclePrev<cr>", desc = "Prev Buffer" },
-    { "<S-l>", "<cmd>BufferLineCycleNext<cr>", desc = "Next Buffer" },
-    { "[b", "<cmd>BufferLineCyclePrev<cr>", desc = "Prev Buffer" },
-    { "]b", "<cmd>BufferLineCycleNext<cr>", desc = "Next Buffer" },
-    { "[B", "<cmd>BufferLineMovePrev<cr>", desc = "Move buffer prev" },
-    { "]B", "<cmd>BufferLineMoveNext<cr>", desc = "Move buffer next" },
+    { "<leader>br", "<Cmd>BufferLineCloseRight<CR>",           desc = "Delete Buffers to the Right" },
+    { "<leader>bl", "<Cmd>BufferLineCloseLeft<CR>",            desc = "Delete Buffers to the Left" },
+    { "<S-h>",      "<cmd>BufferLineCyclePrev<cr>",            desc = "Prev Buffer" },
+    { "<S-l>",      "<cmd>BufferLineCycleNext<cr>",            desc = "Next Buffer" },
+    { "[b",         "<cmd>BufferLineCyclePrev<cr>",            desc = "Prev Buffer" },
+    { "]b",         "<cmd>BufferLineCycleNext<cr>",            desc = "Next Buffer" },
+    { "[B",         "<cmd>BufferLineMovePrev<cr>",             desc = "Move buffer prev" },
+    { "]B",         "<cmd>BufferLineMoveNext<cr>",             desc = "Move buffer next" },
   },
 
   config = function()
     require('bufferline').setup {
       options = {
-        mode = 'buffers', -- set to "tabs" to only show tabpages instead
-        themable = true, -- allows highlight groups to be overriden i.e. sets highlights as default
-        numbers = 'none', -- | "ordinal" | "buffer_id" | "both" | function({ ordinal, id, lower, raise }): string,
+        mode = 'buffers',              -- set to "tabs" to only show tabpages instead
+        themable = true,               -- allows highlight groups to be overriden i.e. sets highlights as default
+        numbers = 'none',              -- | "ordinal" | "buffer_id" | "both" | function({ ordinal, id, lower, raise }): string,
         close_command = 'Bdelete! %d', -- can be a string | function, see "Mouse actions"
         buffer_close_icon = '✗',
         close_icon = '✗',
@@ -41,13 +43,21 @@ keys = {
         show_buffer_close_icons = true,
         show_close_icon = true,
         persist_buffer_sort = true, -- whether or not custom sorted buffers should persist
-        separator_style = { '│', '│' }, -- | "thick" | "thin" | { 'any', 'any' },
-        enforce_regular_tabs = true,
+        separator_style = { " ", " " },
+        enforce_regular_tabs = false,
         always_show_bufferline = true,
         show_tab_indicators = false,
         indicator = {
           -- icon = '▎', -- this should be omitted if indicator style is not 'icon'
           style = 'none', -- Options: 'icon', 'underline', 'none'
+        },
+        offsets = {
+          {
+            filetype = "neo-tree",
+            text = "File Explorer",
+            text_align = "center",
+            separator = true
+          }
         },
         icon_pinned = '󰐃',
         minimum_padding = 1,
