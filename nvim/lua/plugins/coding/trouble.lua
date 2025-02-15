@@ -1,21 +1,59 @@
+local win_float = {
+  type = 'float',
+  realtive = 'editor',
+  border = 'rounded'
+}
+
+local win_right = {
+  type = 'split',
+  relative = 'win',
+  position = 'right',
+  size = 0.4
+}
+
+local win_bottom = {
+  type = 'split',
+  relative = 'win',
+  position = 'bottom',
+  size = 0.2
+}
+
 return {
   {
     "folke/trouble.nvim",
     event = "VeryLazy",
     opts = {
+      open_no_results = true, --Maybe delete
       modes = {
-        lsp = {
-          win = { position = "right" },
+        symbols = {
+          focus = true,
+          win = win_right
         },
+        lsp_base = {
+          focus = true,
+          win = win_right,
+        },
+        lsp = {
+          focus = true,
+          win = win_right,
+        },
+        diagnostics = {
+          focus = true,
+          win = win_bottom
+        }
       },
     },
+
     keys = {
-      { "<leader>xx", "<cmd>Trouble diagnostics toggle<cr>",              desc = "Diagnostics (Trouble)" },
-      { "<leader>xX", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", desc = "Buffer Diagnostics (Trouble)" },
-      { "<leader>cs", "<cmd>Trouble symbols toggle<cr>",                  desc = "Symbols (Trouble)" },
-      { "<leader>cS", "<cmd>Trouble lsp toggle<cr>",                      desc = "LSP references/definitions/... (Trouble)" },
-      { "<leader>xL", "<cmd>Trouble loclist toggle<cr>",                  desc = "Location List (Trouble)" },
-      { "<leader>xQ", "<cmd>Trouble qflist toggle<cr>",                   desc = "Quickfix List (Trouble)" },
+      { "<leader>dl", "<cmd>Trouble diagnostics toggle<cr>",              desc = "Diagnostics List" },
+      { "<leader>dL", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", desc = "Buffer Diagnostics List" },
+      { "<leader>cs", "<cmd>Trouble symbols toggle<cr>",                  desc = "Symbols" },
+      { "<leader>cS", "<cmd>Trouble lsp toggle<cr>",                      desc = "LSP references/definitions/..." },
+      { "gd",         "<cmd>Trouble lsp_definitions toggle<CR>",          desc = "Go to Definitions" },
+      { "gD",         "<cmd>Trouble lsp_declarations toggle<CR>",         desc = "Go to Declarations" },
+      { "gi",         "<cmd>Trouble lsp_implementations toggle<CR>",      desc = "Go to Implementations" },
+      { "gr",         "<cmd>Trouble lsp_references toggle<CR>",           desc = "Find References" },
+      { "gt",         "<cmd>Trouble lsp_type_definitions toggle<CR>",     desc = "Go to Type Definition" },
       {
         "[q",
         function()
