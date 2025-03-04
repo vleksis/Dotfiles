@@ -1,13 +1,14 @@
 return {
   {
     'saghen/blink.cmp',
+    -- NOTE: the newest v0.12.0 version is currently full of bugs.
+    -- Change after some hotfixes
+    version = 'v0.11.0',
     -- optional: provides snippets for the snippet source
     dependencies = {
       'rafamadriz/friendly-snippets',
     },
 
-    -- use a release tag to download pre-built binaries
-    version = '*',
 
     ---@module 'blink.cmp'
     ---@type blink.cmp.Config

@@ -13,6 +13,6 @@ return {
     vim.g.tokyonight_transparent_sidebar = false -- Transparent sidebar
 
     -- Load the colorscheme
-    vim.cmd [[colorscheme tokyonight]]
+    -- vim.cmd [[colorscheme tokyonight]]
   end,
 }
