@@ -1,3 +1,8 @@
+-- Function to toggle inlay hints
+local function toggle_inlay_hints()
+  vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+end
+
 return {
   {
     "folke/which-key.nvim",
@@ -37,8 +42,9 @@ return {
               return require("which-key.extras").expand.win()
             end,
           },
+          { "<leader>ih", toggle_inlay_hints,           desc = "inlay_hint" },
           -- better descriptions
-          { "gx", desc = "Open with system app" },
+          { "gx",         desc = "Open with system app" },
         },
       },
     },
