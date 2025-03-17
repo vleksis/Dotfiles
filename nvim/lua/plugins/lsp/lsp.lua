@@ -22,6 +22,8 @@ return {
             { desc = "Show hover documentation", noremap = true, silent = true, buffer = bufnr })
           vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action,
             { desc = "Show code actions", noremap = true, silent = true, buffer = bufnr })
+          vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename,
+            { desc = "Refactor name", noremap = true, silent = true, buffer = bufnr })
           -- Optionally, add formatting on save or other commands here
 
           -- Optionally, if blink provides extra LSP-related functions or UI feedback,
