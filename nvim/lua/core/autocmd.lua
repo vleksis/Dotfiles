@@ -1,4 +1,5 @@
 vim.api.nvim_create_augroup("ColorSchemeOverrides", { clear = true })
+
 vim.api.nvim_create_autocmd("ColorScheme", {
   group = "ColorSchemeOverrides",
   pattern = "*",

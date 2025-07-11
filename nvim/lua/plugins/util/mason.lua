@@ -8,13 +8,16 @@ return {
   opts = {
     ensure_installed = {
       "clangd",
-      "clang-format",
-      "codelldb",
       'cmake-language-server',
+
+      "codelldb",
+      "clang-format",
 
       "lua-language-server",
       "luacheck",
-      "luaformatter",
+      "stylua",
+
+      "rust-analyzer",
 
       "bash-language-server",
       "shellcheck",
