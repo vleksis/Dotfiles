@@ -69,6 +69,7 @@ return {
 		"--background-index",
 		"--clang-tidy",
 		"--function-arg-placeholders",
+		"--completion-style=detailed",
 	},
 	filetypes = { "c", "cpp", "objc", "objcpp", "cuda", "proto" },
 	root_markers = {

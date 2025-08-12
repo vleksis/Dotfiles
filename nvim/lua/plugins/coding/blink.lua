@@ -1,8 +1,6 @@
 return {
 	{
 		"saghen/blink.cmp",
-		-- NOTE: the newest v0.12.0 version is currently full of bugs.
-		-- Change after some hotfixes
 		version = "1.*",
 		-- optional: provides snippets for the snippet source
 		dependencies = {

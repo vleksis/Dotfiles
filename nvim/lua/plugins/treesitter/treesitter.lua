@@ -15,6 +15,7 @@ return {
     'nvim-treesitter/nvim-treesitter',
 
     opts = {
+      branch = 'master',
 
       ensure_installed = {
         "bash",

@@ -1,7 +1,7 @@
 
-if pgrep -x "htop" > /dev/null; then
-  pkill htop
+if pgrep -x "neohtop" > /dev/null; then
+  pkill neohtop
 else
-  kitty htop
+  neohtop
 fi
 
