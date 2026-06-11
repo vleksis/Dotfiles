@@ -1,0 +1,23 @@
+# Nix build outputs
+/result
+/result-*
+
+# direnv / nix-direnv
+/.direnv/
+.envrc.local
+
+# Generated runtime config
+home/vleksis/niri/noctalia.kdl
+
+# Home Manager backup files
+*.backup
+
+# Editor / temporary files
+*~
+*.bak
+*.swp
+*.swo
+
+# OS junk
+.DS_Store
+Thumbs.db
