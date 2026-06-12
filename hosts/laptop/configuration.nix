@@ -16,6 +16,7 @@
     ../../modules/nixos/sound.nix
     ../../modules/nixos/users.nix
     ../../modules/nixos/fonts.nix
+    ../../modules/nixos/ld.nix
   ];
 
   system.stateVersion = "26.05";
