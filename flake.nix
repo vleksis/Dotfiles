@@ -25,31 +25,41 @@
     };
   };
 
-  outputs = { nixpkgs, home-manager, noctalia, ... }: {
-    nixosConfigurations.laptop = nixpkgs.lib.nixosSystem {
+  outputs =
+    {
+      nixpkgs,
+      home-manager,
+      noctalia,
+      ...
+    }:
+    let
       system = "x86_64-linux";
+    in
+    {
+      formatter.${system} = nixpkgs.legacyPackages.${system}.nixfmt-tree;
 
-      modules = [
-        ./hosts/laptop/configuration.nix
+      nixosConfigurations.laptop = nixpkgs.lib.nixosSystem {
+        inherit system;
 
-        home-manager.nixosModules.home-manager
+        modules = [
+          ./hosts/laptop/configuration.nix
 
-        {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
+          home-manager.nixosModules.home-manager
 
-          home-manager.backupFileExtension = "backup";
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
 
-          home-manager.users.vleksis = {
-            imports = [
-              noctalia.homeModules.default
-              ./home/vleksis/home.nix
-            ];
-          };
-        }
-      ];
+            home-manager.backupFileExtension = "backup";
+
+            home-manager.users.vleksis = {
+              imports = [
+                noctalia.homeModules.default
+                ./home/vleksis/home.nix
+              ];
+            };
+          }
+        ];
+      };
     };
-  };
 }
-
-
