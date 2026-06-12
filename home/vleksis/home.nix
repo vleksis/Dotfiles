@@ -6,6 +6,7 @@
     ./niri/niri.nix
     ./noctalia/noctalia.nix
     ./git.nix
+    ./misc.nix
 
     ./packages.nix
   ];

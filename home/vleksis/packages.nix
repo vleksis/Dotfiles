@@ -21,7 +21,6 @@
     alacritty
 
     fish
-    eza
     mcfly
 
     python3
