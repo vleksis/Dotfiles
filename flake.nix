@@ -55,7 +55,7 @@
             home-manager.users.vleksis = {
               imports = [
                 noctalia.homeModules.default
-                ./home/vleksis/home.nix
+                ./home/vleksis
               ];
             };
           }

@@ -2,9 +2,9 @@
 
 {
   imports = [
-    ./fish/fish.nix
-    ./niri/niri.nix
-    ./noctalia/noctalia.nix
+    ./fish
+    ./niri
+    ./noctalia
     ./git.nix
     ./misc.nix
 
