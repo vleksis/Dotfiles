@@ -23,6 +23,7 @@
 
       alias = {
         co = "checkout";
+        lg = "log --oneline --graph --decorate";
         dc = "diff --cached";
         amend = "commit --amend";
       };
