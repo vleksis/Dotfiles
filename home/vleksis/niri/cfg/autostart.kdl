@@ -1,1 +1,3 @@
 spawn-sh-at-startup "noctalia-shell"
+spawn-at-startup "AmneziaVPN"
+spawn-at-startup "Telegram" "-startintray"
