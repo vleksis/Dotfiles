@@ -20,7 +20,6 @@
     kitty
     alacritty
 
-    fish
     mcfly
 
     python3
