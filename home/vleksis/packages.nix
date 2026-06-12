@@ -122,10 +122,5 @@
     capitaine-cursors
     shared-mime-info
     desktop-file-utils
-
-    noto-fonts
-    noto-fonts-color-emoji
-    nerd-fonts.jetbrains-mono
-    nerd-fonts.fira-code
   ];
 }
