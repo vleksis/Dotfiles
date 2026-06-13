@@ -2,12 +2,9 @@
 
 {
   programs.bash.enable = true;
+  programs.fish.enable = true;
 
-  programs.fish = {
-    enable = true;
-
-    shellAliases = lib.mkForce { };
-  };
+  environment.shellAliases = lib.mkForce { };
 
   programs.vim.enable = true;
   programs.firefox.enable = true;
