@@ -4,7 +4,7 @@
   imports = [
     ./fish.nix
     ./niri
-    ./noctalia
+    ./noctalia.nix
     ./git.nix
     ./misc.nix
 
@@ -22,7 +22,6 @@
   };
 
   xdg.enable = true;
-  programs.noctalia-shell.enable = true;
   programs.home-manager.enable = true;
 
   gtk = {
