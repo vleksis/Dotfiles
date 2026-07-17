@@ -5,7 +5,6 @@
     alacritty
 
     telegram-desktop
-    zed-editor
 
     nautilus
     file-roller

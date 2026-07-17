@@ -2,7 +2,9 @@
 
 {
   home.packages = with pkgs; [
-    sqls
-    sqlfluff
+    curl
+    inetutils
+    ngrok
+    wget
   ];
 }

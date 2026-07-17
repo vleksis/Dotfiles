@@ -2,8 +2,6 @@
 
 {
   environment.systemPackages = with pkgs; [
-    vim
-    helix
     git
     alacritty
     fuzzel
