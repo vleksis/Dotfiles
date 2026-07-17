@@ -4,6 +4,10 @@
   imports = [
     ./common.nix
     ./packages/core.nix
+    ./packages/rust.nix
+    ./packages/nix.nix
+    ./packages/go.nix
+    ./packages/cpp.nix
   ];
 
   home.homeDirectory = "/Users/vleksis";

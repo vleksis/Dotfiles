@@ -9,35 +9,6 @@
     isort
     uv
 
-    rustc
-    cargo
-    rustfmt
-    clippy
-    rust-analyzer
-    cargo-watch
-    cargo-edit
-    cargo-nextest
-
-    go
-    gopls
-    gotools
-    gofumpt
-    golangci-lint
-    delve
-
-    gcc
-    clang-tools
-    cmake
-    gnumake
-    pkg-config
-    openssl
-
-    nixd
-    nil
-    nixfmt
-    statix
-    deadnix
-
     bash-language-server
     shfmt
     fish-lsp
