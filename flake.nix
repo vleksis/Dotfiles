@@ -12,13 +12,10 @@
   };
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-
-    nixpkgs-codex.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
 
     nix-darwin = {
-      # Keep the manual renderer compatible with the pinned nixpkgs revision.
-      url = "github:nix-darwin/nix-darwin/a1fa429e945becaf60468600daf649be4ba0350c";
+      url = "github:nix-darwin/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -36,7 +33,6 @@
   outputs =
     {
       nixpkgs,
-      nixpkgs-codex,
       nix-darwin,
       home-manager,
       noctalia,
@@ -85,7 +81,6 @@
             home-manager.useUserPackages = true;
 
             home-manager.backupFileExtension = "backup";
-            home-manager.extraSpecialArgs.codexPackage = nixpkgs-codex.legacyPackages.${macSystem}.codex;
 
             home-manager.users.vleksis = {
               imports = [

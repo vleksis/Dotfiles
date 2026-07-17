@@ -1,8 +1,4 @@
-{
-  codexPackage,
-  pkgs,
-  ...
-}:
+{ pkgs, ... }:
 
 {
   imports = [
@@ -11,7 +7,7 @@
   ];
 
   home.homeDirectory = "/Users/vleksis";
-  home.packages = [ codexPackage ];
+  home.packages = [ pkgs.codex ];
 
   programs.kitty = {
     enable = true;
