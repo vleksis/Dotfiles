@@ -3,10 +3,15 @@ set shell := ["sh", "-eu", "-c"]
 default:
     @just --list
 
-# Rebuild configuration
+# Rebuild NixOS configuration
 [group('nix')]
 rebuild *args:
     sudo nixos-rebuild switch --flake "$HOME/Dotfiles#laptop" --accept-flake-config {{args}}
+
+# Rebuild macOS configuration
+[group('nix')]
+rebuild-mac *args:
+    sudo darwin-rebuild switch --flake "$HOME/Dotfiles#macbook" --option accept-flake-config true {{args}}
 
 # Check configuration
 [group('nix')]

@@ -1,5 +1,5 @@
 {
-  description = "First try on NixOs";
+  description = "NixOS and nix-darwin configurations";
 
   nixConfig = {
     extra-substituters = [
@@ -13,6 +13,12 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+
+    nix-darwin = {
+      # Keep the manual renderer compatible with the pinned nixpkgs revision.
+      url = "github:nix-darwin/nix-darwin/a1fa429e945becaf60468600daf649be4ba0350c";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -28,15 +34,18 @@
   outputs =
     {
       nixpkgs,
+      nix-darwin,
       home-manager,
       noctalia,
       ...
     }:
     let
       system = "x86_64-linux";
+      macSystem = "aarch64-darwin";
     in
     {
       formatter.${system} = nixpkgs.legacyPackages.${system}.nixfmt-tree;
+      formatter.${macSystem} = nixpkgs.legacyPackages.${macSystem}.nixfmt-tree;
 
       nixosConfigurations.laptop = nixpkgs.lib.nixosSystem {
         inherit system;
@@ -56,6 +65,27 @@
               imports = [
                 noctalia.homeModules.default
                 ./home/vleksis
+              ];
+            };
+          }
+        ];
+      };
+
+      darwinConfigurations.macbook = nix-darwin.lib.darwinSystem {
+        modules = [
+          ./hosts/macbook/configuration.nix
+
+          home-manager.darwinModules.home-manager
+
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+
+            home-manager.backupFileExtension = "backup";
+
+            home-manager.users.vleksis = {
+              imports = [
+                ./home/vleksis/darwin.nix
               ];
             };
           }
