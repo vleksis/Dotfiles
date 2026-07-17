@@ -4,7 +4,6 @@
   home.packages = with pkgs; [
     ripgrep
     fd
-    fzf
     btop
     fastfetch
     tree
@@ -15,9 +14,6 @@
     unzip
     p7zip
 
-    mcfly
-
-    gh
     shellcheck
   ];
 }
