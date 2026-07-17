@@ -2,27 +2,6 @@
 
 {
   home.packages = with pkgs; [
-    ripgrep
-    fd
-    fzf
-    btop
-    fastfetch
-    wl-clipboard
-    cliphist
-    tree
-    jq
-    just
-
-    zip
-    unzip
-    p7zip
-    unrar
-
-    kitty
-    alacritty
-
-    mcfly
-
     python3
     pyright
     ruff
@@ -60,7 +39,6 @@
     deadnix
 
     bash-language-server
-    shellcheck
     shfmt
     fish-lsp
 
@@ -81,7 +59,6 @@
     sqlfluff
 
     actionlint
-    gh
 
     typescript-language-server
     prettier
@@ -89,37 +66,5 @@
 
     lua-language-server
     stylua
-
-    telegram-desktop
-
-    awww
-    swayidle
-    grim
-    slurp
-    swappy
-    wf-recorder
-
-    brightnessctl
-    playerctl
-    pamixer
-    pavucontrol
-    pwvucontrol
-
-    zed-editor
-
-    nautilus
-    file-roller
-    loupe
-    mpv
-
-    fuzzel
-    xwayland-satellite
-
-    papirus-icon-theme
-    adwaita-icon-theme
-    hicolor-icon-theme
-    capitaine-cursors
-    shared-mime-info
-    desktop-file-utils
   ];
 }

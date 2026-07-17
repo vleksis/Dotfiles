@@ -7,7 +7,7 @@
     enable = true;
 
     shellAliases = {
-      ls = "eza --oneline --icons --git --group-directories-first --hyperlink --color=auto $argv";
+      ls = "eza --oneline --icons --git --group-directories-first --hyperlink --color=auto";
     };
   };
 

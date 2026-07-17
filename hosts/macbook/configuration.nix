@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 
 {
   nixpkgs.hostPlatform = "aarch64-darwin";
@@ -12,5 +12,12 @@
 
   programs.fish.enable = true;
 
-  users.users.vleksis.home = "/Users/vleksis";
+  environment.shells = [
+    pkgs.fish
+  ];
+
+  users.users.vleksis = {
+    home = "/Users/vleksis";
+    shell = pkgs.fish;
+  };
 }

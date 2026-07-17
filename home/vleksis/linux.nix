@@ -5,7 +5,7 @@
     ./common.nix
     ./niri
     ./noctalia.nix
-    ./packages.nix
+    ./packages
   ];
 
   home.homeDirectory = "/home/vleksis";
