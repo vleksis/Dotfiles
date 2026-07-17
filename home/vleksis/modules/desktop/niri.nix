@@ -3,12 +3,12 @@
 {
   xdg.configFile = {
     "niri/cfg" = {
-      source = ./cfg;
+      source = ./niri/cfg;
       recursive = true;
     };
 
     "niri/config.kdl" = {
-      source = ./config.kdl;
+      source = ./niri/config.kdl;
     };
   };
 }

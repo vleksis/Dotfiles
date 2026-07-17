@@ -1,18 +1,10 @@
-{ pkgs, ... }:
+{
+  lib,
+  pkgs,
+  ...
+}:
 
 {
-  imports = [
-    ./common.nix
-    ./packages/core.nix
-    ./packages/rust.nix
-    ./packages/nix.nix
-    ./packages/go.nix
-    ./packages/cpp.nix
-  ];
-
-  home.homeDirectory = "/Users/vleksis";
-  home.packages = [ pkgs.codex ];
-
   programs.kitty = {
     enable = true;
     font = {
@@ -21,7 +13,6 @@
       size = 14;
     };
     settings = {
-      macos_option_as_alt = "both";
       shell = "${pkgs.fish}/bin/fish --login --interactive";
 
       scrollback_lines = 10000;
@@ -36,8 +27,9 @@
       bold_font = "auto";
       italic_font = "auto";
       bold_italic_font = "auto";
+    }
+    // lib.optionalAttrs pkgs.stdenv.isDarwin {
+      macos_option_as_alt = "both";
     };
   };
-
-  programs.man.generateCaches = false;
 }

@@ -13,7 +13,12 @@
     zip
     unzip
     p7zip
-
-    shellcheck
   ];
+
+  programs.bat.enable = true;
+
+  programs.fzf = {
+    enable = true;
+    historyWidget.fish.command = "";
+  };
 }

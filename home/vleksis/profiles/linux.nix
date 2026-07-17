@@ -2,10 +2,14 @@
 
 {
   imports = [
-    ./common.nix
-    ./niri
-    ./noctalia.nix
-    ./packages
+    ./shared.nix
+
+    ../modules/desktop/appearance.nix
+    ../modules/desktop/applications.nix
+    ../modules/desktop/hardware.nix
+    ../modules/desktop/niri.nix
+    ../modules/desktop/noctalia.nix
+    ../modules/desktop/wayland.nix
   ];
 
   home.homeDirectory = "/home/vleksis";

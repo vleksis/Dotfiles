@@ -63,7 +63,7 @@
             home-manager.users.vleksis = {
               imports = [
                 noctalia.homeModules.default
-                ./home/vleksis
+                ./home/vleksis/profiles/linux.nix
               ];
             };
           }
@@ -84,7 +84,7 @@
 
             home-manager.users.vleksis = {
               imports = [
-                ./home/vleksis/darwin.nix
+                ./home/vleksis/profiles/darwin.nix
               ];
             };
           }
