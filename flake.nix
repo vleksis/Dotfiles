@@ -11,6 +11,7 @@
     ];
   };
 
+  # Flake inputs must be declared here; Nix does not accept imported thunks.
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
 
@@ -30,65 +31,5 @@
     };
   };
 
-  outputs =
-    {
-      nixpkgs,
-      nix-darwin,
-      home-manager,
-      noctalia,
-      ...
-    }:
-    let
-      system = "x86_64-linux";
-      macSystem = "aarch64-darwin";
-    in
-    {
-      formatter.${system} = nixpkgs.legacyPackages.${system}.nixfmt-tree;
-      formatter.${macSystem} = nixpkgs.legacyPackages.${macSystem}.nixfmt-tree;
-
-      nixosConfigurations.laptop = nixpkgs.lib.nixosSystem {
-        inherit system;
-
-        modules = [
-          ./hosts/laptop/configuration.nix
-
-          home-manager.nixosModules.home-manager
-
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-
-            home-manager.backupFileExtension = "backup";
-
-            home-manager.users.vleksis = {
-              imports = [
-                noctalia.homeModules.default
-                ./home/vleksis/profiles/linux.nix
-              ];
-            };
-          }
-        ];
-      };
-
-      darwinConfigurations.macbook = nix-darwin.lib.darwinSystem {
-        modules = [
-          ./hosts/macbook/configuration.nix
-
-          home-manager.darwinModules.home-manager
-
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-
-            home-manager.backupFileExtension = "backup";
-
-            home-manager.users.vleksis = {
-              imports = [
-                ./home/vleksis/profiles/darwin.nix
-              ];
-            };
-          }
-        ];
-      };
-    };
+  outputs = inputs: import ./flake/outputs.nix inputs;
 }

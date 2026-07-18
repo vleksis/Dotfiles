@@ -1,4 +1,4 @@
-{ ... }:
+{ hostName, ... }:
 
 {
   imports = [
@@ -26,6 +26,8 @@
   home.stateVersion = "26.05";
 
   home.sessionVariables = {
+    NIX_HOST = hostName;
+
     EDITOR = "vim";
     VISUAL = "vim";
   };
