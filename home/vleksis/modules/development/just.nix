@@ -2,9 +2,7 @@
 
 {
   home.packages = with pkgs; [
-    nixd
-    nixfmt
-    statix
-    deadnix
+    just
+    just-lsp
   ];
 }

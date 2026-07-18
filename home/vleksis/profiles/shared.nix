@@ -14,6 +14,7 @@
     ../modules/development/cpp.nix
     ../modules/development/file-formats.nix
     ../modules/development/go.nix
+    ../modules/development/just.nix
     ../modules/development/lua.nix
     ../modules/development/nix.nix
     ../modules/development/python.nix

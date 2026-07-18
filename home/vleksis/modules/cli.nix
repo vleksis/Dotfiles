@@ -8,7 +8,6 @@
     fastfetch
     tree
     jq
-    just
 
     zip
     unzip
