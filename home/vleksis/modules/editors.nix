@@ -1,13 +1,15 @@
 { pkgs, ... }:
 
 {
-  programs.vim.enable = true;
-  programs.helix.enable = true;
+  programs = {
+    vim.enable = true;
+    helix.enable = true;
 
-  programs.zed-editor = {
-    enable = true;
-    extraPackages = [ pkgs.codex-acp ];
+    zed-editor = {
+      enable = true;
+      extraPackages = [ pkgs.codex-acp ];
 
-    userSettings.terminal.font_family = "FiraCode Nerd Font Mono";
+      userSettings.terminal.font_family = "FiraCode Nerd Font Mono";
+    };
   };
 }

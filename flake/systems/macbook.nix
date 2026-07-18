@@ -19,14 +19,16 @@ in
       home-manager.darwinModules.home-manager
 
       {
-        home-manager.useGlobalPkgs = true;
-        home-manager.useUserPackages = true;
-        home-manager.backupFileExtension = "backup";
-        home-manager.extraSpecialArgs = { inherit hostName; };
+        home-manager = {
+          useGlobalPkgs = true;
+          useUserPackages = true;
+          backupFileExtension = "backup";
+          extraSpecialArgs = { inherit hostName; };
 
-        home-manager.users.vleksis.imports = [
-          ../../home/vleksis/profiles/darwin.nix
-        ];
+          users.vleksis.imports = [
+            ../../home/vleksis/profiles/darwin.nix
+          ];
+        };
       }
     ];
   };

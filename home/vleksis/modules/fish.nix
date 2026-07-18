@@ -1,27 +1,27 @@
-{
-  ...
-}:
+_:
 
 {
-  programs.fish = {
-    enable = true;
+  programs = {
+    fish = {
+      enable = true;
 
-    shellAliases = {
-      ls = "eza --oneline --icons --git --group-directories-first --hyperlink --color=auto";
+      shellAliases = {
+        ls = "eza --oneline --icons --git --group-directories-first --hyperlink --color=auto";
+      };
     };
-  };
 
-  programs.eza = {
-    enable = true;
-    git = true;
-    icons = "auto";
-  };
+    eza = {
+      enable = true;
+      git = true;
+      icons = "auto";
+    };
 
-  programs.mcfly = {
-    enable = true;
-    enableFishIntegration = true;
-    fuzzySearchFactor = 2;
-    fzf.enable = true;
-    keyScheme = "vim";
+    mcfly = {
+      enable = true;
+      enableFishIntegration = true;
+      fuzzySearchFactor = 2;
+      fzf.enable = true;
+      keyScheme = "vim";
+    };
   };
 }

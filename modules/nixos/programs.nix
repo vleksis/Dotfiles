@@ -1,15 +1,17 @@
 { lib, ... }:
 
 {
-  programs.bash.enable = true;
-  programs.fish.enable = true;
+  programs = {
+    bash.enable = true;
+    fish.enable = true;
+
+    vim.enable = true;
+    firefox.enable = true;
+
+    amnezia-vpn.enable = true;
+  };
 
   environment.shellAliases = lib.mkForce { };
-
-  programs.vim.enable = true;
-  programs.firefox.enable = true;
-
-  programs.amnezia-vpn.enable = true;
 
   services.printing.enable = true;
 }

@@ -56,8 +56,10 @@ fmt:
     nix fmt
     just --fmt
 
-[doc("Check repository formatting")]
+[doc("Lint repository files")]
 [group('ci')]
 lint:
     just --fmt --check
     nix fmt -- --ci
+    statix check . --ignore 'hosts/laptop/hardware-configuration.nix'
+    deadnix --fail .

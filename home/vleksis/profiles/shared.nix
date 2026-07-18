@@ -22,14 +22,16 @@
     ../modules/development/web.nix
   ];
 
-  home.username = "vleksis";
-  home.stateVersion = "26.05";
+  home = {
+    username = "vleksis";
+    stateVersion = "26.05";
 
-  home.sessionVariables = {
-    NIX_HOST = hostName;
+    sessionVariables = {
+      NIX_HOST = hostName;
 
-    EDITOR = "vim";
-    VISUAL = "vim";
+      EDITOR = "vim";
+      VISUAL = "vim";
+    };
   };
 
   programs.home-manager.enable = true;
