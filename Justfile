@@ -16,18 +16,18 @@ host := env("NIX_HOST")
 [group('nix')]
 [macos]
 rebuild *args:
-    sudo darwin-rebuild switch --flake "{{ root }}#{{ host }}" --option accept-flake-config true {{ args }}
+    sudo darwin-rebuild switch --flake "{{ root }}#{{ host }}" {{ args }}
 
 [doc("Rebuild the current NixOS configuration")]
 [group('nix')]
 [linux]
 rebuild *args:
-    sudo nixos-rebuild switch --flake "{{ root }}#{{ host }}" --option accept-flake-config true {{ args }}
+    sudo nixos-rebuild switch --flake "{{ root }}#{{ host }}" {{ args }}
 
 [doc("Check the flake configuration")]
 [group('nix')]
 check-config:
-    nix flake check --accept-flake-config
+    nix flake check
 
 [doc("Update all flake inputs")]
 [group('nix')]

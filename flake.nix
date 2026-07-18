@@ -1,16 +1,6 @@
 {
   description = "NixOS and nix-darwin configurations";
 
-  nixConfig = {
-    extra-substituters = [
-      "https://noctalia.cachix.org"
-    ];
-
-    extra-trusted-public-keys = [
-      "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="
-    ];
-  };
-
   # Flake inputs must be declared here; Nix does not accept imported thunks.
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
