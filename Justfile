@@ -1,42 +1,63 @@
 set shell := ["sh", "-eu", "-c"]
+set default-list
 
-default:
-    @just --list
+###################
+#    VARIABLES    #
+###################
 
-# Rebuild NixOS configuration
+root := justfile_directory()
+host := env("NIX_HOST")
+
+###################
+#       NIX       #
+###################
+
+[doc("Rebuild the current macOS configuration")]
 [group('nix')]
+[macos]
 rebuild *args:
-    sudo nixos-rebuild switch --flake "$HOME/Dotfiles#laptop" --accept-flake-config {{args}}
+    sudo darwin-rebuild switch --flake "{{ root }}#{{ host }}" --option accept-flake-config true {{ args }}
 
-# Rebuild macOS configuration
+[doc("Rebuild the current NixOS configuration")]
 [group('nix')]
-rebuild-mac *args:
-    sudo darwin-rebuild switch --flake "$HOME/Dotfiles#macbook" --option accept-flake-config true {{args}}
+[linux]
+rebuild *args:
+    sudo nixos-rebuild switch --flake "{{ root }}#{{ host }}" --option accept-flake-config true {{ args }}
 
-# Check configuration
+[doc("Check the flake configuration")]
 [group('nix')]
-check:
+check-config:
     nix flake check --accept-flake-config
 
-# Update all the flake inputs
+[doc("Update all flake inputs")]
 [group('nix')]
 update:
-  nix flake update --commit-lock-file
+    nix flake update --commit-lock-file
 
-# List all generations of the system profile
+[doc("List system profile generations")]
 [group('nix')]
 history:
-  nix profile history --profile /nix/var/nix/profiles/system
+    nix profile history --profile /nix/var/nix/profiles/system
 
-# Garbage collect all unused nix store entries
+[doc("Garbage collect Nix store entries older than seven days")]
 [group('nix')]
 gc:
-  # garbage collect all unused nix store entries(system-wide)
-  sudo nix-collect-garbage --delete-older-than 7d
-  # garbage collect all unused nix store entries(for the user - home-manager)
-  # https://github.com/NixOS/nix/issues/8508
-  nix-collect-garbage --delete-older-than 7d
+    sudo nix-collect-garbage --delete-older-than 7d
+    # Also collect the user profile: https://github.com/NixOS/nix/issues/8508
+    nix-collect-garbage --delete-older-than 7d
 
-[group('nix')]
+###################
+#       CI        #
+###################
+
+[doc("Format repository files")]
+[group('ci')]
 fmt:
     nix fmt
+    just --fmt
+
+[doc("Check repository formatting")]
+[group('ci')]
+lint:
+    just --fmt --check
+    nix fmt -- --ci
