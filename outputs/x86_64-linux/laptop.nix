@@ -6,13 +6,10 @@
 }:
 
 let
-  system = "x86_64-linux";
   hostName = "laptop";
 in
 {
   nixosConfigurations.${hostName} = nixpkgs.lib.nixosSystem {
-    inherit system;
-
     modules = [
       ../../hosts/${hostName}/configuration.nix
 

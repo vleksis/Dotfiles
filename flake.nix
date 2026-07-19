@@ -21,5 +21,5 @@
     };
   };
 
-  outputs = inputs: import ./flake/outputs.nix inputs;
+  outputs = inputs: import ./outputs inputs;
 }
