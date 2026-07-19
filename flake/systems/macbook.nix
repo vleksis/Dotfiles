@@ -1,17 +1,13 @@
 {
   nix-darwin,
   home-manager,
-  nixpkgs,
   ...
 }:
 
 let
-  system = "aarch64-darwin";
   hostName = "macbook";
 in
 {
-  formatter = nixpkgs.legacyPackages.${system}.nixfmt-tree;
-
   darwinConfigurations.${hostName} = nix-darwin.lib.darwinSystem {
     modules = [
       ../../hosts/${hostName}/configuration.nix

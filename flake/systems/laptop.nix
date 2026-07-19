@@ -10,8 +10,6 @@ let
   hostName = "laptop";
 in
 {
-  formatter = nixpkgs.legacyPackages.${system}.nixfmt-tree;
-
   nixosConfigurations.${hostName} = nixpkgs.lib.nixosSystem {
     inherit system;
 
