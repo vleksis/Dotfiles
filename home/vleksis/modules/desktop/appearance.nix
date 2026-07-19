@@ -2,7 +2,6 @@
 
 {
   home.packages = with pkgs; [
-    papirus-icon-theme
     adwaita-icon-theme
     hicolor-icon-theme
     capitaine-cursors

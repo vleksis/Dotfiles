@@ -9,6 +9,7 @@
     tree
     jq
 
+    gzip
     zip
     unzip
     p7zip
