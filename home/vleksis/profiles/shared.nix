@@ -4,6 +4,7 @@
   imports = [
     ../modules/cli.nix
     ../modules/editors.nix
+    ../modules/education.nix
     ../modules/fish.nix
     ../modules/git.nix
     ../modules/network.nix

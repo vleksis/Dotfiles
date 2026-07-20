@@ -13,12 +13,14 @@ host := env("NIX_HOST")
 ###################
 
 [doc("Rebuild the current macOS configuration")]
+[group('macos')]
 [group('nix')]
 [macos]
 rebuild *args:
     sudo darwin-rebuild switch --flake "{{ root }}#{{ host }}" {{ args }}
 
 [doc("Rebuild the current NixOS configuration")]
+[group('linux')]
 [group('nix')]
 [linux]
 rebuild *args:
@@ -63,3 +65,14 @@ lint:
     nix fmt -- --ci
     statix check . --ignore 'hosts/laptop/hardware-configuration.nix'
     deadnix --fail .
+
+###################
+#      MACOS      #
+###################
+
+[doc("Reset Launchpad to reindex applications")]
+[group('macos')]
+[macos]
+reset-launchpad:
+    defaults write com.apple.dock ResetLaunchPad -bool true
+    killall Dock
