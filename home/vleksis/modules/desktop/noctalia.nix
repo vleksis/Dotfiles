@@ -183,7 +183,6 @@ _:
             "spicetify"
             "tauon"
             "zen-browser"
-            "neovim"
             "vscode"
             "zed"
             "fuzzel"

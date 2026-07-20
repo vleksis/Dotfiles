@@ -21,7 +21,6 @@ _:
       enableFishIntegration = true;
       fuzzySearchFactor = 2;
       fzf.enable = true;
-      keyScheme = "vim";
     };
   };
 }

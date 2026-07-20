@@ -31,8 +31,8 @@
     sessionVariables = {
       NIX_HOST = hostName;
 
-      EDITOR = "vim";
-      VISUAL = "vim";
+      EDITOR = "hx";
+      VISUAL = "hx";
     };
   };
 
