@@ -12,7 +12,7 @@ _:
   services.adguardhome = {
     enable = true;
 
-    host = "127.0.0.1";
+    host = "0.0.0.0";
     port = 3000;
 
     mutableSettings = true;
@@ -21,6 +21,7 @@ _:
       dns = {
         bind_hosts = [
           "127.0.0.1"
+          "192.168.31.187"
           "::1"
         ];
 
@@ -37,5 +38,13 @@ _:
         ];
       };
     };
+  };
+
+  networking.firewall = {
+    allowedTCPPorts = [
+      53
+      3000
+    ];
+    allowedUDPPorts = [ 53 ];
   };
 }

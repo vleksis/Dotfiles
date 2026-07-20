@@ -7,6 +7,7 @@ set default-list
 
 root := justfile_directory()
 host := env("NIX_HOST")
+homelab_target := "vleksis@192.168.31.187"
 
 ###################
 #       NIX       #
@@ -25,6 +26,13 @@ rebuild *args:
 [linux]
 rebuild *args:
     sudo nixos-rebuild switch --flake "{{ root }}#{{ host }}" {{ args }}
+
+[doc("Build and deploy the homelab configuration remotely")]
+[group('macos')]
+[group('nix')]
+[macos]
+deploy-homelab *args:
+    nix run --inputs-from "{{ root }}" nixpkgs#nixos-rebuild -- switch --flake "{{ root }}#homelab" --target-host "{{ homelab_target }}" --build-host "{{ homelab_target }}" --use-remote-sudo {{ args }}
 
 [doc("Check the flake configuration")]
 [group('nix')]
