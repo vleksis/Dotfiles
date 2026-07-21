@@ -1,11 +1,15 @@
+{ lib, ... }:
+
 let
-  homelab = import ../machines.nix;
+  homelab = import ../inventory.nix;
+  homepage = homelab.services.homepage;
+  dashboardServices = lib.filterAttrs (_name: service: service.dashboard) homelab.services;
 in
 {
   services.homepage-dashboard = {
     enable = true;
-    listenPort = homelab.services.homepage.port;
-    allowedHosts = "homepage.${homelab.domain}";
+    listenPort = homepage.port;
+    allowedHosts = homepage.domain;
 
     settings = {
       title = "Homelab";
@@ -15,20 +19,12 @@ in
 
     services = [
       {
-        Homelab = [
-          {
-            "AdGuard Home" = {
-              href = homelab.services.adguard.domain;
-              description = "DNS filtering and local rewrites";
-            };
-          }
-          {
-            Jellyfin = {
-              href = homelab.services.jellyfin.domain;
-              description = "Movies, shows, and music";
-            };
-          }
-        ];
+        Homelab = lib.mapAttrsToList (_serviceName: service: {
+          "${service.title}" = {
+            href = "http://${service.domain}";
+            inherit (service) description;
+          };
+        }) dashboardServices;
       }
     ];
   };

@@ -1,8 +1,9 @@
-{ hostName, lib, ... }:
+{ lib, ... }:
 
 let
-  homelab = import ../machines.nix;
-  caddy = homelab.machines.${hostName}.services.caddy;
+  homelab = import ../inventory.nix;
+  caddy = homelab.services.caddy;
+  proxyServices = lib.filterAttrs (_name: service: service.proxy) homelab.services;
 in
 {
   services.caddy = {
@@ -12,12 +13,12 @@ in
     httpsPort = null;
 
     virtualHosts = lib.mapAttrs' (
-      serviceName: service:
-      lib.nameValuePair "http://${serviceName}.${homelab.domain}" {
+      _serviceName: service:
+      lib.nameValuePair "http://${service.domain}" {
         extraConfig = ''
           reverse_proxy ${service.address}:${toString service.port}
         '';
       }
-    ) homelab.services;
+    ) proxyServices;
   };
 }

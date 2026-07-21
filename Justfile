@@ -7,7 +7,7 @@ set default-list
 
 root := justfile_directory()
 host := env("NIX_HOST")
-homelab_address := `nix eval --raw --file modules/homelab/machines.nix machines.homelab.address`
+homelab_address := `nix eval --raw --file modules/homelab/machines.nix homelab.address`
 homelab_target := "vleksis@" + homelab_address
 
 ###################

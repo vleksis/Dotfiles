@@ -1,8 +1,9 @@
 { lib, ... }:
 
 let
-  homelab = import ../machines.nix;
-  caddyMachine = homelab.machines.homelab;
+  homelab = import ../inventory.nix;
+  caddy = homelab.services.caddy;
+  proxyServices = lib.filterAttrs (_name: service: service.proxy) homelab.services;
 in
 {
   networking.resolvconf.useLocalResolver = true;
@@ -37,11 +38,11 @@ in
       };
 
       filtering = {
-        rewrites = lib.mapAttrsToList (serviceName: _service: {
-          domain = "${serviceName}.${homelab.domain}";
-          answer = caddyMachine.address;
+        rewrites = lib.mapAttrsToList (_serviceName: service: {
+          inherit (service) domain;
+          answer = caddy.address;
           enabled = true;
-        }) homelab.services;
+        }) proxyServices;
       };
     };
   };

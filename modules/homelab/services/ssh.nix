@@ -1,8 +1,8 @@
-{ hostName, ... }:
+_:
 
 let
-  homelab = import ../machines.nix;
-  ssh = homelab.machines.${hostName}.services.ssh;
+  homelab = import ../inventory.nix;
+  ssh = homelab.services.ssh;
 in
 {
   services.openssh = {
