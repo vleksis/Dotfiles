@@ -1,19 +1,16 @@
-_:
-
+let
+  adguard = (import ../machines.nix).services.adguard;
+in
 {
-  # Route normal system DNS through AdGuard Home while keeping systemd-resolved
-  # available for NetworkManager and AmneziaVPN.
-  networking.nameservers = [ "127.0.0.1" ];
-  services.resolved.settings.Resolve = {
-    Domains = [ "~." ];
-    FallbackDNS = [ ];
-  };
+  # Route the host's own DNS queries through AdGuard Home instead of accepting
+  # the DNS server advertised by DHCP.
+  networking.resolvconf.useLocalResolver = true;
 
   services.adguardhome = {
     enable = true;
 
     host = "0.0.0.0";
-    port = 3000;
+    inherit (adguard) port;
 
     mutableSettings = true;
 
@@ -21,7 +18,7 @@ _:
       dns = {
         bind_hosts = [
           "127.0.0.1"
-          "192.168.31.187"
+          adguard.address
           "::1"
         ];
 
@@ -43,7 +40,7 @@ _:
   networking.firewall = {
     allowedTCPPorts = [
       53
-      3000
+      adguard.port
     ];
     allowedUDPPorts = [ 53 ];
   };

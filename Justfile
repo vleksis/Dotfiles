@@ -7,7 +7,8 @@ set default-list
 
 root := justfile_directory()
 host := env("NIX_HOST")
-homelab_target := "vleksis@192.168.31.187"
+homelab_address := `nix eval --raw --file modules/homelab/machines.nix machines.homelab.address`
+homelab_target := "vleksis@" + homelab_address
 
 ###################
 #       NIX       #
@@ -32,7 +33,7 @@ rebuild *args:
 [group('nix')]
 [macos]
 deploy-homelab *args:
-    nix run --inputs-from "{{ root }}" nixpkgs#nixos-rebuild -- switch --flake "{{ root }}#homelab" --target-host "{{ homelab_target }}" --build-host "{{ homelab_target }}" --use-remote-sudo {{ args }}
+    nix run --inputs-from "{{ root }}" nixpkgs#nixos-rebuild -- switch --flake "{{ root }}#homelab" --target-host "{{ homelab_target }}" --build-host "{{ homelab_target }}" --elevate=sudo --ask-elevate-password {{ args }}
 
 [doc("Check the flake configuration")]
 [group('nix')]

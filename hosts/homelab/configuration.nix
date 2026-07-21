@@ -10,8 +10,10 @@
     ../../modules/nixos/nix.nix
     ../../modules/nixos/users.nix
 
-    ../../modules/homelab/adguard.nix
-    ../../modules/homelab/ssh.nix
+    ../../modules/homelab/services/adguard.nix
+    ../../modules/homelab/services/jellyfin.nix
+    ../../modules/homelab/services/ssh.nix
+    ../../modules/homelab/proxy.nix
   ];
 
   networking = {

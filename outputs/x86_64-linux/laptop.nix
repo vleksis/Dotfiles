@@ -12,8 +12,6 @@ in
   nixosConfigurations.${hostName} = nixpkgs.lib.nixosSystem {
     modules = [
       ../../hosts/${hostName}/configuration.nix
-      ../../modules/homelab/adguard.nix
-      ../../modules/homelab/ssh.nix
 
       home-manager.nixosModules.home-manager
 
