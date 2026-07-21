@@ -1,7 +1,8 @@
-{ lib, ... }:
+{ hostName, lib, ... }:
+
 let
-  homelab = import ./machines.nix;
-  caddy = homelab.machines.homelab.services.caddy;
+  homelab = import ../machines.nix;
+  caddy = homelab.machines.${hostName}.services.caddy;
 in
 {
   services.caddy = {

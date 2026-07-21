@@ -17,6 +17,10 @@
         jellyfin = {
           port = 8096;
         };
+
+        ssh = {
+          port = 22;
+        };
       };
     };
   };

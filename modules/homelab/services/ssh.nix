@@ -1,7 +1,14 @@
-_: {
+{ hostName, ... }:
+
+let
+  homelab = import ../machines.nix;
+  ssh = homelab.machines.${hostName}.services.ssh;
+in
+{
   services.openssh = {
     enable = true;
     openFirewall = true;
+    ports = [ ssh.port ];
 
     settings = {
       PasswordAuthentication = false;
