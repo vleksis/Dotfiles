@@ -1,16 +1,17 @@
+{ lib, ... }:
+
 let
-  adguard = (import ../machines.nix).services.adguard;
+  homelab = import ../machines.nix;
+  caddyMachine = homelab.machines.homelab;
 in
 {
-  # Route the host's own DNS queries through AdGuard Home instead of accepting
-  # the DNS server advertised by DHCP.
   networking.resolvconf.useLocalResolver = true;
 
   services.adguardhome = {
     enable = true;
 
     host = "0.0.0.0";
-    inherit (adguard) port;
+    port = homelab.services.adguard.port;
 
     mutableSettings = true;
 
@@ -18,7 +19,7 @@ in
       dns = {
         bind_hosts = [
           "127.0.0.1"
-          adguard.address
+          homelab.services.adguard.address
           "::1"
         ];
 
@@ -34,14 +35,19 @@ in
           "9.9.9.9"
         ];
       };
+
+      filtering = {
+        rewrites = lib.mapAttrsToList (serviceName: _service: {
+          domain = "${serviceName}.${homelab.domain}";
+          answer = caddyMachine.address;
+          enabled = true;
+        }) homelab.services;
+      };
     };
   };
 
   networking.firewall = {
-    allowedTCPPorts = [
-      53
-      adguard.port
-    ];
+    allowedTCPPorts = [ 53 ];
     allowedUDPPorts = [ 53 ];
   };
 }

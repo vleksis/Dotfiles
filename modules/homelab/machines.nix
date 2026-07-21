@@ -1,11 +1,17 @@
 {
+  domain = "home.arpa";
+
   machines = {
     homelab = {
-      address = "192.168.31.187";
+      address = "192.168.31.200";
 
       services = {
         adguard = {
           port = 3000;
+        };
+
+        caddy = {
+          port = 80;
         };
 
         jellyfin = {
@@ -18,13 +24,13 @@
   services = {
     adguard = {
       machine = "homelab";
-      address = "192.168.31.187";
+      address = "192.168.31.200";
       port = 3000;
     };
 
     jellyfin = {
       machine = "homelab";
-      address = "192.168.31.187";
+      address = "192.168.31.200";
       port = 8096;
     };
   };
