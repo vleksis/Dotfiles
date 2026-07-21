@@ -6,10 +6,11 @@
 
 let
   hostName = "homelab";
+  inventory = import ../../modules/homelab/inventory.nix;
 in
 {
   nixosConfigurations.${hostName} = nixpkgs.lib.nixosSystem {
-    specialArgs = { inherit hostName; };
+    specialArgs = { inherit hostName inventory; };
 
     modules = [
       ../../hosts/${hostName}/configuration.nix

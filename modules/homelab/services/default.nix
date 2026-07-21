@@ -1,8 +1,7 @@
-{ hostName, ... }:
+{ hostName, inventory, ... }:
 
 let
-  machines = import ../machines.nix;
-  services = machines.${hostName}.services;
+  services = inventory.machines.${hostName}.services;
 in
 {
   imports = map (name: ./. + "/${name}.nix") services;

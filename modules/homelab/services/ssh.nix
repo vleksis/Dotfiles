@@ -1,8 +1,7 @@
-_:
+{ inventory, ... }:
 
 let
-  homelab = import ../inventory.nix;
-  ssh = homelab.services.ssh;
+  ssh = inventory.services.ssh;
 in
 {
   services.openssh = {

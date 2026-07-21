@@ -1,9 +1,8 @@
-{ lib, ... }:
+{ inventory, lib, ... }:
 
 let
-  homelab = import ../inventory.nix;
-  homepage = homelab.services.homepage;
-  dashboardServices = lib.filterAttrs (_name: service: service.dashboard) homelab.services;
+  homepage = inventory.services.homepage;
+  dashboardServices = lib.filterAttrs (_name: service: service.dashboard) inventory.services;
 in
 {
   services.homepage-dashboard = {

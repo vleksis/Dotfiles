@@ -1,9 +1,8 @@
-{ lib, ... }:
+{ inventory, lib, ... }:
 
 let
-  homelab = import ../inventory.nix;
-  caddy = homelab.services.caddy;
-  proxyServices = lib.filterAttrs (_name: service: service.proxy) homelab.services;
+  caddy = inventory.services.caddy;
+  proxyServices = lib.filterAttrs (_name: service: service.proxy) inventory.services;
 in
 {
   services.caddy = {

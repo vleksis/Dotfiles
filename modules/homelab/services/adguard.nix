@@ -1,9 +1,8 @@
-{ lib, ... }:
+{ inventory, lib, ... }:
 
 let
-  homelab = import ../inventory.nix;
-  caddy = homelab.services.caddy;
-  proxyServices = lib.filterAttrs (_name: service: service.proxy) homelab.services;
+  caddy = inventory.services.caddy;
+  proxyServices = lib.filterAttrs (_name: service: service.proxy) inventory.services;
 in
 {
   networking.resolvconf.useLocalResolver = true;
@@ -12,7 +11,7 @@ in
     enable = true;
 
     host = "0.0.0.0";
-    port = homelab.services.adguard.port;
+    port = inventory.services.adguard.port;
 
     mutableSettings = true;
 
@@ -20,7 +19,7 @@ in
       dns = {
         bind_hosts = [
           "127.0.0.1"
-          homelab.services.adguard.address
+          inventory.services.adguard.address
           "::1"
         ];
 
