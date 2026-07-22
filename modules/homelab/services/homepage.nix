@@ -24,7 +24,7 @@ in
           "${service.title}" = {
             href = service.url;
             siteMonitor = service.url;
-            inherit (service) description;
+            inherit (service) description icon;
           };
         }) dashboardServices;
       }

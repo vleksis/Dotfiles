@@ -2,6 +2,7 @@
   adguard = {
     port = 3000;
     title = "AdGuard Home";
+    icon = "adguard-home.svg";
     description = "DNS filtering and local rewrites";
     proxy = true;
     dashboard = true;
@@ -10,6 +11,7 @@
   bazarr = {
     port = 6767;
     title = "Bazarr";
+    icon = "bazarr.svg";
     description = "Subtitle management";
     proxy = true;
     dashboard = true;
@@ -34,6 +36,7 @@
   jellyfin = {
     port = 8096;
     title = "Jellyfin";
+    icon = "jellyfin.svg";
     description = "Movies, shows, and music";
     proxy = true;
     dashboard = true;
@@ -59,6 +62,7 @@
   prowlarr = {
     port = 9696;
     title = "Prowlarr";
+    icon = "prowlarr.svg";
     description = "Indexer management";
     proxy = true;
     dashboard = true;
@@ -67,6 +71,7 @@
   qbittorrent = {
     port = 8080;
     title = "qBittorrent";
+    icon = "qbittorrent.svg";
     description = "Torrent downloads";
     proxy = true;
     dashboard = true;
@@ -75,6 +80,7 @@
   radarr = {
     port = 7878;
     title = "Radarr";
+    icon = "radarr.svg";
     description = "Movie management";
     proxy = true;
     dashboard = true;
@@ -83,6 +89,7 @@
   sonarr = {
     port = 8989;
     title = "Sonarr";
+    icon = "sonarr.svg";
     description = "Series management";
     proxy = true;
     dashboard = true;
