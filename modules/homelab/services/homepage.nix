@@ -14,6 +14,8 @@ in
       title = "Homelab";
       headerStyle = "clean";
       hideVersion = true;
+
+      statusStyle = "dot";
     };
 
     services = [
@@ -21,6 +23,7 @@ in
         Homelab = lib.mapAttrsToList (_serviceName: service: {
           "${service.title}" = {
             href = service.url;
+            siteMonitor = service.url;
             inherit (service) description;
           };
         }) dashboardServices;
