@@ -8,7 +8,7 @@
     yaml-language-server
     yamlfmt
     yamllint
-    marksman
+    markdown-oxide
 
     actionlint
   ];

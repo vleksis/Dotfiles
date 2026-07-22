@@ -9,6 +9,10 @@
 
       languages.language = [
         {
+          name = "markdown";
+          language-servers = [ "markdown-oxide" ];
+        }
+        {
           name = "nix";
           language-servers = [ "nixd" ];
         }
@@ -20,10 +24,14 @@
 
       extensions = [
         "just"
+        "markdown-oxide"
         "nix"
       ];
 
-      extraPackages = [ pkgs.codex-acp ];
+      extraPackages = with pkgs; [
+        codex-acp
+        markdown-oxide
+      ];
 
       userSettings = {
         terminal.font_family = "FiraCode Nerd Font Mono";
