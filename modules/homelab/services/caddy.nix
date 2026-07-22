@@ -13,7 +13,7 @@ in
 
     virtualHosts = lib.mapAttrs' (
       _serviceName: service:
-      lib.nameValuePair "http://${service.domain}" {
+      lib.nameValuePair service.url {
         extraConfig = ''
           reverse_proxy ${service.address}:${toString service.port}
         '';

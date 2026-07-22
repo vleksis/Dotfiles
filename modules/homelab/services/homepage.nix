@@ -20,7 +20,7 @@ in
       {
         Homelab = lib.mapAttrsToList (_serviceName: service: {
           "${service.title}" = {
-            href = "http://${service.domain}";
+            href = service.url;
             inherit (service) description;
           };
         }) dashboardServices;
