@@ -3,10 +3,17 @@
     address = "192.168.31.200";
     services = [
       "adguard"
+      "bazarr"
       "caddy"
-      "jellyfin"
       "homepage"
+      "jellyfin"
+      "media"
+      "prowlarr"
+      "qbittorrent"
+      "radarr"
+      "sonarr"
       "ssh"
+      "torrent-vpn"
     ];
   };
 }
