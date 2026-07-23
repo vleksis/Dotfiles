@@ -3,7 +3,6 @@
 {
   programs = {
     bash.enable = true;
-    fish.enable = true;
 
     vim.enable = true;
     firefox.enable = true;

@@ -14,9 +14,9 @@ in
 
     modules = [
       ../../hosts/laptop
-      ../../hosts/laptop/configuration.nix
       ../../hosts/laptop/desktop-hardware.nix
       ../../hosts/laptop/nvidia.nix
+      ../../modules/nixos/roles/personal-desktop.nix
 
       home-manager.nixosModules.home-manager
 

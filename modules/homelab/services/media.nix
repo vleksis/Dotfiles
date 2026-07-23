@@ -8,10 +8,7 @@ in
   users = {
     groups.media = { };
 
-    users = {
-      jellyfin.extraGroups = [ "media" ];
-      vleksis.extraGroups = [ "media" ];
-    };
+    users.jellyfin.extraGroups = [ "media" ];
   };
 
   systemd.tmpfiles.rules = [

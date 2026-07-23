@@ -3,9 +3,7 @@ _:
 {
   imports = [
     ../core
+    ../desktop
     ../users/vleksis.nix
-    ../users/vleksis-homelab.nix
-
-    ../../homelab/services
   ];
 }
