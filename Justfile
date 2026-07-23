@@ -33,11 +33,6 @@ rebuild *args:
 deploy-homelab *args:
     nix run --inputs-from "{{ root }}" nixpkgs#nixos-rebuild -- switch --flake "{{ root }}#okabe" --target-host "okabe" --build-host "okabe" --elevate=sudo {{ args }}
 
-[doc("Check the flake configuration")]
-[group('nix')]
-check-config:
-    nix flake check
-
 [doc("Update all flake inputs")]
 [group('nix')]
 update:
@@ -72,6 +67,11 @@ lint:
     nix fmt -- --ci
     statix check . --ignore 'hosts/asus-rog-strix-g614ji/hardware-configuration.nix'
     deadnix --fail .
+
+[doc("Check the flake configuration")]
+[group('ci')]
+check-config:
+    nix flake check --all-systems
 
 ###################
 #      MACOS      #
