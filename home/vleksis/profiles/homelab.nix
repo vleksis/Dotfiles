@@ -6,12 +6,14 @@
 
 {
   imports = [
-    ../modules/cli.nix
-    ../modules/fish.nix
-    ../modules/git.nix
+    ../git.nix
 
-    ../modules/development/just.nix
-    ../modules/development/nix.nix
+    ../../../modules/home/core/cli.nix
+    ../../../modules/home/core/fish.nix
+    ../../../modules/home/core/git.nix
+
+    ../../../modules/home/development/just.nix
+    ../../../modules/home/development/nix.nix
   ];
 
   home = {

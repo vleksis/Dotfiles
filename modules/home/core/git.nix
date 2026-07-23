@@ -6,21 +6,8 @@ _:
       enable = true;
 
       settings = {
-        user.name = "vleksis";
-        user.email = "vleksis@yandex.ru";
-
         init.defaultBranch = "main";
         trim.bases = "develop,master,main";
-
-        url = {
-          "ssh://git@github.com/vleksis" = {
-            insteadOf = "https://github.com/vleksis";
-          };
-
-          "ssh://git@gitlab.com/vleksis" = {
-            insteadOf = "https://gitlab.com/vleksis";
-          };
-        };
 
         alias = {
           co = "checkout";

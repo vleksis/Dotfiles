@@ -4,12 +4,13 @@
   imports = [
     ./shared.nix
 
-    ../modules/desktop/appearance.nix
-    ../modules/desktop/applications.nix
-    ../modules/desktop/hardware.nix
-    ../modules/desktop/niri.nix
-    ../modules/desktop/noctalia.nix
-    ../modules/desktop/wayland.nix
+    ../applications.nix
+    ../desktop/niri.nix
+    ../desktop/noctalia.nix
+
+    ../../../modules/home/desktop/appearance.nix
+    ../../../modules/home/desktop/hardware.nix
+    ../../../modules/home/desktop/wayland.nix
   ];
 
   home.homeDirectory = "/home/vleksis";
