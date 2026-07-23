@@ -31,7 +31,7 @@ rebuild *args:
 [group('nix')]
 [macos]
 deploy-homelab *args:
-    nix run --inputs-from "{{ root }}" nixpkgs#nixos-rebuild -- switch --flake "{{ root }}#homelab" --target-host "homelab" --build-host "homelab" --elevate=sudo {{ args }}
+    nix run --inputs-from "{{ root }}" nixpkgs#nixos-rebuild -- switch --flake "{{ root }}#okabe" --target-host "okabe" --build-host "okabe" --elevate=sudo {{ args }}
 
 [doc("Check the flake configuration")]
 [group('nix')]

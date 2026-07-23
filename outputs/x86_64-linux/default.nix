@@ -5,7 +5,7 @@
 
 let
   hosts = [
-    (import ./homelab.nix inputs)
+    (import ./okabe.nix inputs)
     (import ./laptop.nix inputs)
   ];
 in

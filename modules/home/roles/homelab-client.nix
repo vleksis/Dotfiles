@@ -6,8 +6,8 @@
     enableDefaultConfig = false;
     includes = [ "~/.ssh/config.local" ];
 
-    settings.homelab = {
-      HostName = inventory.machines.homelab.address;
+    settings.okabe = {
+      HostName = inventory.machines.okabe.address;
       Port = inventory.services.ssh.port;
       User = "admin";
 

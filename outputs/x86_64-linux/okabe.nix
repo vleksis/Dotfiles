@@ -6,7 +6,7 @@
 }:
 
 let
-  hostName = "homelab";
+  hostName = "okabe";
 in
 {
   nixosConfigurations.${hostName} = nixpkgs.lib.nixosSystem {
