@@ -1,4 +1,4 @@
-{ hostName, ... }:
+{ osConfig, ... }:
 
 {
   imports = [
@@ -29,7 +29,7 @@
     stateVersion = "26.05";
 
     sessionVariables = {
-      NIX_HOST = hostName;
+      NIX_HOST = osConfig.networking.hostName;
 
       EDITOR = "hx";
       VISUAL = "hx";

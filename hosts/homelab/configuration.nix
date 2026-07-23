@@ -1,9 +1,11 @@
-{ hostName, ... }:
+{ ... }:
 
 {
   imports = [
     # The homelab profile runs on the same physical machine as the laptop.
     ../laptop/hardware-configuration.nix
+
+    ../../modules/shared
 
     ../../modules/nixos/boot.nix
     ../../modules/nixos/locale.nix
@@ -13,10 +15,7 @@
     ../../modules/homelab/services
   ];
 
-  networking = {
-    inherit hostName;
-    networkmanager.enable = true;
-  };
+  networking.networkmanager.enable = true;
 
   programs.fish.enable = true;
 

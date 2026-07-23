@@ -22,7 +22,6 @@ in
           useGlobalPkgs = true;
           useUserPackages = true;
           backupFileExtension = "backup";
-          extraSpecialArgs = { inherit hostName; };
 
           users.vleksis.imports = [
             ../../home/vleksis/profiles/homelab.nix

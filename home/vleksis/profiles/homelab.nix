@@ -1,5 +1,5 @@
 {
-  hostName,
+  osConfig,
   pkgs,
   ...
 }:
@@ -26,7 +26,7 @@
     ];
 
     sessionVariables = {
-      NIX_HOST = hostName;
+      NIX_HOST = osConfig.networking.hostName;
 
       EDITOR = "hx";
       VISUAL = "hx";

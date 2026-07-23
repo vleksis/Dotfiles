@@ -10,6 +10,8 @@ let
 in
 {
   nixosConfigurations.${hostName} = nixpkgs.lib.nixosSystem {
+    specialArgs = { inherit hostName; };
+
     modules = [
       ../../hosts/${hostName}/configuration.nix
 
@@ -20,7 +22,6 @@ in
           useGlobalPkgs = true;
           useUserPackages = true;
           backupFileExtension = "backup";
-          extraSpecialArgs = { inherit hostName; };
 
           users.vleksis.imports = [
             noctalia.homeModules.default

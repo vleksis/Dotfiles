@@ -9,6 +9,8 @@ let
 in
 {
   darwinConfigurations.${hostName} = nix-darwin.lib.darwinSystem {
+    specialArgs = { inherit hostName; };
+
     modules = [
       ../../hosts/${hostName}/configuration.nix
 
@@ -19,7 +21,6 @@ in
           useGlobalPkgs = true;
           useUserPackages = true;
           backupFileExtension = "backup";
-          extraSpecialArgs = { inherit hostName; };
 
           users.vleksis.imports = [
             ../../home/vleksis/profiles/darwin.nix

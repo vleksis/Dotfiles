@@ -5,6 +5,8 @@
     ./hardware-configuration.nix
     ./nvidia.nix
 
+    ../../modules/shared
+
     ../../modules/nixos/boot.nix
     ../../modules/nixos/desktop.nix
     ../../modules/nixos/hardware.nix
