@@ -1,6 +1,7 @@
 {
   nix-darwin,
   home-manager,
+  inventory,
   ...
 }:
 
@@ -21,6 +22,7 @@ in
           useGlobalPkgs = true;
           useUserPackages = true;
           backupFileExtension = "backup";
+          extraSpecialArgs = { inherit inventory; };
 
           users.vleksis.imports = [
             ../../home/vleksis/profiles/darwin.nix

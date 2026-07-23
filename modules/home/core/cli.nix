@@ -16,9 +16,4 @@
   ];
 
   programs.bat.enable = true;
-
-  programs.fzf = {
-    enable = true;
-    historyWidget.fish.command = "";
-  };
 }

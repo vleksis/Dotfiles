@@ -1,6 +1,7 @@
 {
   nixpkgs,
   home-manager,
+  inventory,
   noctalia,
   ...
 }:
@@ -25,6 +26,7 @@ in
           useGlobalPkgs = true;
           useUserPackages = true;
           backupFileExtension = "backup";
+          extraSpecialArgs = { inherit inventory; };
 
           users.vleksis.imports = [
             noctalia.homeModules.default

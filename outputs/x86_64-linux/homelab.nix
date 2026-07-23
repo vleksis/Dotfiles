@@ -1,12 +1,12 @@
 {
   nixpkgs,
   home-manager,
+  inventory,
   ...
 }:
 
 let
   hostName = "homelab";
-  inventory = import ../../modules/homelab/inventory.nix;
 in
 {
   nixosConfigurations.${hostName} = nixpkgs.lib.nixosSystem {
@@ -23,9 +23,10 @@ in
           useGlobalPkgs = true;
           useUserPackages = true;
           backupFileExtension = "backup";
+          extraSpecialArgs = { inherit inventory; };
 
-          users.vleksis.imports = [
-            ../../home/vleksis/profiles/homelab.nix
+          users.admin.imports = [
+            ../../home/admin
           ];
         };
       }

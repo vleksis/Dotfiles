@@ -22,5 +22,10 @@ _:
       fuzzySearchFactor = 2;
       fzf.enable = true;
     };
+
+    fzf = {
+      enable = true;
+      historyWidget.fish.command = "";
+    };
   };
 }
