@@ -70,7 +70,7 @@ fmt:
 lint:
     just --fmt --check
     nix fmt -- --ci
-    statix check . --ignore 'hosts/laptop/hardware-configuration.nix'
+    statix check . --ignore 'hosts/mikasa/hardware-configuration.nix'
     deadnix --fail .
 
 ###################

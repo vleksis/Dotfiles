@@ -5,7 +5,7 @@
 
 let
   hosts = [
-    (import ./macbook.nix inputs)
+    (import ./eren.nix inputs)
   ];
 in
 {

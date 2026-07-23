@@ -6,7 +6,7 @@
 }:
 
 let
-  hostName = "macbook";
+  hostName = "eren";
 in
 {
   darwinConfigurations.${hostName} = nix-darwin.lib.darwinSystem {

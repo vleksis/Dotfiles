@@ -6,7 +6,7 @@
 let
   hosts = [
     (import ./okabe.nix inputs)
-    (import ./laptop.nix inputs)
+    (import ./mikasa.nix inputs)
   ];
 in
 {

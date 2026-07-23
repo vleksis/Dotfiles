@@ -7,16 +7,16 @@
 }:
 
 let
-  hostName = "laptop";
+  hostName = "mikasa";
 in
 {
   nixosConfigurations.${hostName} = nixpkgs.lib.nixosSystem {
     specialArgs = { inherit hostName; };
 
     modules = [
-      ../../hosts/laptop
-      ../../hosts/laptop/desktop-hardware.nix
-      ../../hosts/laptop/nvidia.nix
+      ../../hosts/mikasa
+      ../../hosts/mikasa/desktop-hardware.nix
+      ../../hosts/mikasa/nvidia.nix
       ../../modules/nixos/roles/personal-desktop.nix
 
       home-manager.nixosModules.home-manager
