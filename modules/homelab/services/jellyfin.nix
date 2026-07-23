@@ -1,7 +1,7 @@
 { hostName, inventory, ... }:
 
 let
-  hostAddress = inventory.machines.${hostName}.address;
+  hostAddress = inventory.nodes.${hostName}.address;
 in
 {
   services.jellyfin = {

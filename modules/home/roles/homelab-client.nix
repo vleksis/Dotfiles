@@ -7,7 +7,7 @@
     includes = [ "~/.ssh/config.local" ];
 
     settings.okabe = {
-      HostName = inventory.machines.okabe.address;
+      HostName = inventory.nodes.okabe.address;
       Port = inventory.services.ssh.port;
       User = "admin";
 

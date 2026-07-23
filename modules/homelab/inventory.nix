@@ -1,12 +1,12 @@
 let
   topDomain = "home.arpa";
-  machines = import ./machines.nix;
+  nodes = import ./nodes.nix;
   catalog = import ./service-catalog.nix;
 
   servicePlacements = builtins.concatMap (
-    machineName:
+    nodeName:
     let
-      machine = machines.${machineName};
+      node = nodes.${nodeName};
     in
     map (
       serviceName:
@@ -17,16 +17,16 @@ let
       {
         name = serviceName;
         value = definition // {
-          machine = machineName;
-          inherit (machine) address;
+          node = nodeName;
+          inherit (node) address;
           inherit domain;
           url = if domain == null then null else "http://${domain}";
         };
       }
-    ) machine.services
-  ) (builtins.attrNames machines);
+    ) node.services
+  ) (builtins.attrNames nodes);
 in
 {
-  inherit topDomain machines;
+  inherit topDomain nodes;
   services = builtins.listToAttrs servicePlacements;
 }
