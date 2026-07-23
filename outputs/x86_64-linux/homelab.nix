@@ -13,7 +13,8 @@ in
     specialArgs = { inherit hostName inventory; };
 
     modules = [
-      ../../hosts/${hostName}/configuration.nix
+      ../../hosts/laptop/hardware-configuration.nix
+      ../../modules/nixos/roles/homelab.nix
 
       home-manager.nixosModules.home-manager
 
