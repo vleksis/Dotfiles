@@ -14,9 +14,9 @@ in
     specialArgs = { inherit hostName; };
 
     modules = [
-      ../../hosts/mikasa
-      ../../hosts/mikasa/desktop-hardware.nix
-      ../../hosts/mikasa/nvidia.nix
+      ../../hosts/asus-rog-strix-g614ji
+      ../../hosts/asus-rog-strix-g614ji/desktop-hardware.nix
+      ../../hosts/asus-rog-strix-g614ji/nvidia.nix
       ../../modules/nixos/roles/personal-desktop.nix
 
       home-manager.nixosModules.home-manager
