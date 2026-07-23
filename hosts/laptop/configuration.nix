@@ -2,9 +2,6 @@
 
 {
   imports = [
-    ./hardware-configuration.nix
-    ./nvidia.nix
-
     ../../modules/shared
 
     ../../modules/nixos/boot.nix

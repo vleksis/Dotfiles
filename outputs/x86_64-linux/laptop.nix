@@ -13,7 +13,10 @@ in
     specialArgs = { inherit hostName; };
 
     modules = [
-      ../../hosts/${hostName}/configuration.nix
+      ../../hosts/laptop
+      ../../hosts/laptop/configuration.nix
+      ../../hosts/laptop/desktop-hardware.nix
+      ../../hosts/laptop/nvidia.nix
 
       home-manager.nixosModules.home-manager
 
