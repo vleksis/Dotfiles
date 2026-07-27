@@ -13,8 +13,6 @@
     "flakes"
   ];
 
-  system.stateVersion = 6;
-
   programs.fish.enable = true;
 
   environment.shells = [
