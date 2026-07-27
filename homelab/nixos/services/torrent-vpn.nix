@@ -1,4 +1,5 @@
 {
+  config,
   inventory,
   lib,
   pkgs,
@@ -16,6 +17,13 @@ let
   endpointPort = 33676;
   proxyUser = "torrent-vpn";
   firewallChain = "nixos-torrent-vpn";
+  vpnService = "wg-quick-${interface}";
+  vpnUnit = "${vpnService}.service";
+  secretRestartUnits = [
+    vpnUnit
+    "torrent-vpn-proxy.service"
+    "qbittorrent.service"
+  ];
   vpnUsers = [
     "qbittorrent"
     proxyUser
@@ -60,6 +68,11 @@ let
   '') vpnUsers;
 in
 {
+  sops.secrets = {
+    torrent-vpn-private-key.restartUnits = secretRestartUnits;
+    torrent-vpn-preshared-key.restartUnits = secretRestartUnits;
+  };
+
   users = {
     groups.${proxyUser} = { };
     users.${proxyUser} = {
@@ -68,13 +81,11 @@ in
     };
   };
 
-  systemd.tmpfiles.rules = [ "d /etc/secrets 0700 root root - -" ];
-
   networking = {
     wg-quick.interfaces.${interface} = {
       type = "amneziawg";
       address = [ "${tunnelAddress}/32" ];
-      privateKeyFile = "/etc/secrets/amnezia-qbt-private-key";
+      privateKeyFile = config.sops.secrets.torrent-vpn-private-key.path;
       table = routingTable;
       mtu = 1280;
 
@@ -102,7 +113,7 @@ in
       peers = [
         {
           publicKey = "Ki2+ViLV+xKH1jhV8czaBkTm+IqcLEPrkm51AW5ceho=";
-          presharedKeyFile = "/etc/secrets/amnezia-qbt-preshared-key";
+          presharedKeyFile = config.sops.secrets.torrent-vpn-preshared-key.path;
           allowedIPs = [ "0.0.0.0/0" ];
           endpoint = "${endpointAddress}:${toString endpointPort}";
           persistentKeepalive = 25;
@@ -151,10 +162,15 @@ in
     };
   };
 
+  systemd.services.${vpnService} = {
+    requires = [ "sops-install-secrets.service" ];
+    after = [ "sops-install-secrets.service" ];
+  };
+
   systemd.services.torrent-vpn-proxy = {
     description = "Loopback SOCKS5 proxy through the torrent VPN";
-    after = [ "wg-quick-${interface}.service" ];
-    bindsTo = [ "wg-quick-${interface}.service" ];
+    after = [ vpnUnit ];
+    bindsTo = [ vpnUnit ];
     wantedBy = [ "multi-user.target" ];
 
     serviceConfig = {
