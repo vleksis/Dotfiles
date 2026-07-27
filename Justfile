@@ -65,7 +65,7 @@ fmt:
 lint:
     just --fmt --check
     nix fmt -- --ci
-    statix check . --ignore 'hosts/asus-rog-strix-g614ji/hardware-configuration.nix'
+    statix check . --ignore 'hardware/asus-rog-strix-g614ji/hardware-configuration.nix'
     deadnix --fail .
 
 [doc("Check the flake configuration")]

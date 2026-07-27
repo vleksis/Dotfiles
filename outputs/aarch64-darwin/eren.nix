@@ -13,7 +13,7 @@ in
     specialArgs = { inherit hostName; };
 
     modules = [
-      ../../hosts/macbook-air-m4/configuration.nix
+      ../../hardware/macbook-air-m4/configuration.nix
 
       home-manager.darwinModules.home-manager
 

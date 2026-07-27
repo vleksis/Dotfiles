@@ -1,4 +1,4 @@
-# Hardware hosts
+# Hardware
 
 This directory defines physical machine profiles.
 
