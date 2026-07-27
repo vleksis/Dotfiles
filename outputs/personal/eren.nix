@@ -6,14 +6,15 @@
 }:
 
 nix-darwin.lib.darwinSystem {
-  specialArgs.hostName = "eren";
-
   modules = [
-    ../../hardware/macbook-air-m4/configuration.nix
+    ../../hardware/macbook-air-m4
+    ../../modules/system/darwin
+    ../../users/vleksis/darwin
 
     home-manager.darwinModules.home-manager
 
     {
+      networking.hostName = "eren";
       system.stateVersion = 6;
 
       home-manager = {
@@ -21,10 +22,6 @@ nix-darwin.lib.darwinSystem {
         useUserPackages = true;
         backupFileExtension = "backup";
         extraSpecialArgs = { inherit inventory; };
-
-        users.vleksis.imports = [
-          ../../home/vleksis/profiles/darwin.nix
-        ];
       };
     }
   ];

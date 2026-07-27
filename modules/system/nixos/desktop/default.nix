@@ -3,7 +3,7 @@ _:
 {
   imports = [
     ./fonts.nix
-    ./hardware.nix
+    ./devices.nix
     ./ld.nix
     ./programs.nix
     ./session.nix

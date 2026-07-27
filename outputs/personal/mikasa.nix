@@ -7,17 +7,18 @@
 }:
 
 nixpkgs.lib.nixosSystem {
-  specialArgs.hostName = "mikasa";
-
   modules = [
     ../../hardware/asus-rog-strix-g614ji
-    ../../hardware/asus-rog-strix-g614ji/desktop-hardware.nix
+    ../../hardware/asus-rog-strix-g614ji/desktop.nix
     ../../hardware/asus-rog-strix-g614ji/nvidia.nix
-    ../../modules/nixos/roles/personal-desktop.nix
+    ../../modules/system/nixos
+    ../../modules/system/nixos/desktop
+    ../../users/vleksis/nixos
 
     home-manager.nixosModules.home-manager
 
     {
+      networking.hostName = "mikasa";
       system.stateVersion = "26.05";
 
       home-manager = {
@@ -25,10 +26,8 @@ nixpkgs.lib.nixosSystem {
         useUserPackages = true;
         backupFileExtension = "backup";
         extraSpecialArgs = { inherit inventory; };
-
-        users.vleksis.imports = [
+        sharedModules = [
           noctalia.homeModules.default
-          ../../home/vleksis/profiles/linux.nix
         ];
       };
     }

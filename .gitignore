@@ -6,9 +6,6 @@
 /.direnv/
 .envrc.local
 
-# Generated runtime config
-home/vleksis/niri/noctalia.kdl
-
 # Home Manager backup files
 *.backup
 

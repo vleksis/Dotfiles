@@ -9,20 +9,20 @@
 nixpkgs.lib.nixosSystem {
   specialArgs = {
     inherit inventory;
-    hostName = "okabe";
     nodeName = "okabe";
   };
 
   modules = [
     ../../hardware/asus-rog-strix-g614ji
-    ../../modules/nixos/core
-    ../../modules/nixos/users/admin.nix
+    ../../modules/system/nixos
+    ../../users/admin
     ../../homelab/nixos
 
     home-manager.nixosModules.home-manager
     sops-nix.nixosModules.sops
 
     {
+      networking.hostName = "okabe";
       system.stateVersion = "26.05";
 
       home-manager = {
@@ -30,10 +30,6 @@ nixpkgs.lib.nixosSystem {
         useUserPackages = true;
         backupFileExtension = "backup";
         extraSpecialArgs = { inherit inventory; };
-
-        users.admin.imports = [
-          ../../home/admin
-        ];
       };
     }
   ];
