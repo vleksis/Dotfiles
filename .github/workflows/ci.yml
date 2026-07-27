@@ -1,0 +1,59 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    name: Flake check
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: DeterminateSystems/determinate-nix-action@v3
+
+      - run: nix flake check --keep-going
+
+  mikasa:
+    name: Mikasa (NixOS)
+    needs: check
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: DeterminateSystems/determinate-nix-action@v3
+
+      - name: Build Mikasa
+        run: nix build .#nixosConfigurations.mikasa.config.system.build.toplevel --no-link
+
+  okabe:
+    name: Okabe (NixOS)
+    needs: check
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: DeterminateSystems/determinate-nix-action@v3
+
+      - name: Build Okabe
+        run: nix build .#nixosConfigurations.okabe.config.system.build.toplevel --no-link
+
+  eren:
+    name: Eren (nix-darwin)
+    needs: check
+    runs-on: macos-latest
+
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: DeterminateSystems/determinate-nix-action@v3
+
+      - name: Build Eren
+        run: nix build .#darwinConfigurations.eren.system --no-link
