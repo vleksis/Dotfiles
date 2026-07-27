@@ -1,6 +1,8 @@
-_:
+{ pkgs, ... }:
 
 {
+  home.packages = [ pkgs.gitleaks ];
+
   programs = {
     git = {
       enable = true;

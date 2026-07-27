@@ -8,8 +8,38 @@ permissions:
   contents: read
 
 jobs:
+  lint:
+    name: Lint ${{ matrix.name }}
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: Justfile
+            packages: nixpkgs#just
+            recipe: lint-just
+          - name: GitHub Actions
+            packages: nixpkgs#just nixpkgs#actionlint
+            recipe: lint-actions
+          - name: secrets
+            packages: nixpkgs#just nixpkgs#gitleaks
+            recipe: lint-secrets
+          - name: Nix
+            packages: nixpkgs#just nixpkgs#statix nixpkgs#deadnix
+            recipe: lint-nix
+
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - uses: DeterminateSystems/determinate-nix-action@v3
+
+      - run: nix shell --inputs-from . ${{ matrix.packages }} --command just ${{ matrix.recipe }}
+
   check:
-    name: Checks
+    name: Check configuration
     runs-on: ubuntu-latest
 
     steps:
@@ -17,15 +47,11 @@ jobs:
 
       - uses: DeterminateSystems/determinate-nix-action@v3
 
-      - name: Lint repository
-        run: nix shell --inputs-from . nixpkgs#just nixpkgs#actionlint nixpkgs#statix nixpkgs#deadnix --command just lint
-
-      - name: Check configuration
-        run: nix shell --inputs-from . nixpkgs#just --command just check-config
+      - run: nix shell --inputs-from . nixpkgs#just --command just check-config
 
   mikasa:
     name: Mikasa (NixOS)
-    needs: check
+    needs: [lint, check]
     runs-on: ubuntu-latest
 
     steps:
@@ -38,7 +64,7 @@ jobs:
 
   okabe:
     name: Okabe (NixOS)
-    needs: check
+    needs: [lint, check]
     runs-on: ubuntu-latest
 
     steps:
@@ -51,7 +77,7 @@ jobs:
 
   eren:
     name: Eren (nix-darwin)
-    needs: check
+    needs: [lint, check]
     runs-on: macos-latest
 
     steps:
