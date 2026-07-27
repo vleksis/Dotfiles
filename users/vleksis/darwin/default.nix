@@ -12,7 +12,6 @@ in
   home-manager.users.vleksis = {
     imports = [
       ../shared
-      ../../../modules/home-manager/darwin/man.nix
     ];
 
     home.homeDirectory = homeDirectory;

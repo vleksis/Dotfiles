@@ -4,6 +4,7 @@ _:
   programs = {
     fish = {
       enable = true;
+      generateCompletions = false;
 
       shellAliases = {
         ls = "eza --oneline --icons --git --group-directories-first --hyperlink --color=auto";

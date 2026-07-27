@@ -8,5 +8,7 @@ _:
     ./networking.nix
   ];
 
+  programs.fish.generateCompletions = false;
+
   services.fstrim.enable = true;
 }
