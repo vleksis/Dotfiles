@@ -20,11 +20,17 @@ in
 
     services = [
       {
-        Homelab = lib.mapAttrsToList (_serviceName: service: {
+        Homelab = lib.mapAttrsToList (serviceName: service: {
           "${service.dashboard.title}" = {
             href = service.url;
             siteMonitor = service.url;
             inherit (service.dashboard) description icon;
+          }
+          // lib.optionalAttrs (service.dashboard ? widget) {
+            widget = service.dashboard.widget // {
+              inherit (service) url;
+              key = "{{HOMEPAGE_VAR_${lib.toUpper serviceName}_API_KEY}}";
+            };
           };
         }) dashboardServices;
       }

@@ -1,9 +1,30 @@
-{ inventory, lib, ... }:
+{
+  config,
+  inventory,
+  lib,
+  ...
+}:
 
 let
   radarr = inventory.services.radarr;
 in
 {
+  sops.secrets.radarr-api-key.restartUnits = [
+    "homepage-dashboard.service"
+    "radarr.service"
+  ];
+
+  sops.templates = {
+    "radarr.env".content = ''
+      HOMEPAGE_VAR_RADARR_API_KEY=${config.sops.placeholder.radarr-api-key}
+      RADARR__AUTH__APIKEY=${config.sops.placeholder.radarr-api-key}
+    '';
+  };
+
+  services.homepage-dashboard.environmentFiles = [
+    config.sops.templates."radarr.env".path
+  ];
+
   services.radarr = {
     enable = true;
     openFirewall = false;
@@ -13,6 +34,8 @@ in
       inherit (radarr) port;
       bindaddress = "0.0.0.0";
     };
+
+    environmentFiles = [ config.sops.templates."radarr.env".path ];
   };
 
   systemd.services.radarr.serviceConfig.UMask = lib.mkForce "0002";

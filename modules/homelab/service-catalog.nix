@@ -102,6 +102,11 @@
       title = "Radarr";
       icon = "radarr.svg";
       description = "Movie management";
+
+      widget = {
+        type = "radarr";
+        enableQueue = true;
+      };
     };
   };
 
