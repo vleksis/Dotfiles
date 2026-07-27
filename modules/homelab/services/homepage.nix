@@ -2,7 +2,7 @@
 
 let
   homepage = inventory.services.homepage;
-  dashboardServices = lib.filterAttrs (_name: service: service.dashboard) inventory.services;
+  dashboardServices = lib.filterAttrs (_name: service: service.dashboard.enable) inventory.services;
 in
 {
   services.homepage-dashboard = {
@@ -21,10 +21,10 @@ in
     services = [
       {
         Homelab = lib.mapAttrsToList (_serviceName: service: {
-          "${service.title}" = {
+          "${service.dashboard.title}" = {
             href = service.url;
             siteMonitor = service.url;
-            inherit (service) description icon;
+            inherit (service.dashboard) description icon;
           };
         }) dashboardServices;
       }
