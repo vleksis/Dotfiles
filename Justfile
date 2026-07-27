@@ -6,7 +6,6 @@ set default-list
 ###################
 
 root := justfile_directory()
-host := env("NIX_HOST")
 
 ###################
 #       NIX       #
@@ -17,14 +16,14 @@ host := env("NIX_HOST")
 [group('nix')]
 [macos]
 rebuild *args:
-    sudo darwin-rebuild switch --flake "{{ root }}#{{ host }}" {{ args }}
+    sudo darwin-rebuild switch --flake "{{ root }}#${NIX_HOST:?NIX_HOST is not set}" {{ args }}
 
 [doc("Rebuild the current NixOS configuration")]
 [group('linux')]
 [group('nix')]
 [linux]
 rebuild *args:
-    sudo nixos-rebuild switch --flake "{{ root }}#{{ host }}" {{ args }}
+    sudo nixos-rebuild switch --flake "{{ root }}#${NIX_HOST:?NIX_HOST is not set}" {{ args }}
 
 [doc("Build and deploy the homelab configuration remotely")]
 [group('macos')]
