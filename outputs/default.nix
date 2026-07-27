@@ -3,7 +3,7 @@ inputs:
 let
   inherit (inputs) nixpkgs;
 
-  inventory = import ../modules/homelab/inventory.nix;
+  inventory = import ../homelab/inventory;
   outputInputs = inputs // {
     inherit inventory;
   };

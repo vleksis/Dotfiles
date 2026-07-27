@@ -1,7 +1,7 @@
 let
   topDomain = "home.arpa";
   nodes = import ./nodes.nix;
-  catalog = import ./service-catalog.nix;
+  catalog = import ./catalog.nix;
 
   servicePlacements = builtins.concatMap (
     nodeName:

@@ -14,7 +14,7 @@
     ../../../modules/home/editors/helix.nix
     ../../../modules/home/editors/vim.nix
 
-    ../../../modules/home/roles/homelab-client.nix
+    ../../../homelab/home-manager/client.nix
 
     ../../../modules/home/terminal/kitty.nix
 

@@ -1,15 +1,15 @@
 {
   config,
-  hostName,
   inventory,
   lib,
+  nodeName,
   ...
 }:
 
 let
   sonarr = inventory.services.sonarr;
   torrentVpn = inventory.services."torrent-vpn";
-  hostAddress = inventory.nodes.${hostName}.address;
+  hostAddress = inventory.nodes.${nodeName}.address;
 in
 {
   sops.secrets.sonarr-api-key.restartUnits = [

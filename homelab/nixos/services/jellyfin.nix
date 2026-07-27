@@ -1,7 +1,7 @@
-{ hostName, inventory, ... }:
+{ inventory, nodeName, ... }:
 
 let
-  hostAddress = inventory.nodes.${hostName}.address;
+  hostAddress = inventory.nodes.${nodeName}.address;
 in
 {
   sops.secrets.jellyfin-api-key.restartUnits = [ "homepage-dashboard.service" ];

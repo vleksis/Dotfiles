@@ -2,7 +2,7 @@
 
 let
   media = inventory.services.media;
-  validateMovieAudio = pkgs.callPackage ../packages/validate-movie-audio.nix { };
+  validateMovieAudio = pkgs.callPackage ../../packages/validate-movie-audio.nix { };
 in
 {
   users = {
