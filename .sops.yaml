@@ -1,0 +1,3 @@
+creation_rules:
+  - path_regex: secrets/homelab\.yaml$
+    age: age1sjd8zkms6l5s0vsc3ljfzeqdx4ek8kqxz2hhmnx5xtuzz065qehsqvvwkf,age186v90tpcuwhy2tlykzuk20lwhqwutsexglfc303nf7pa2mmka5pq5hy58m

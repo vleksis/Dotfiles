@@ -2,6 +2,7 @@
   nixpkgs,
   home-manager,
   inventory,
+  sops-nix,
   ...
 }:
 
@@ -17,6 +18,7 @@ in
       ../../modules/nixos/roles/homelab.nix
 
       home-manager.nixosModules.home-manager
+      sops-nix.nixosModules.sops
 
       {
         home-manager = {
