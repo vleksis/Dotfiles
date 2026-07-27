@@ -14,16 +14,9 @@ in
     "radarr.service"
   ];
 
-  sops.templates = {
-    "radarr.env".content = ''
-      HOMEPAGE_VAR_RADARR_API_KEY=${config.sops.placeholder.radarr-api-key}
-      RADARR__AUTH__APIKEY=${config.sops.placeholder.radarr-api-key}
-    '';
-  };
-
-  services.homepage-dashboard.environmentFiles = [
-    config.sops.templates."radarr.env".path
-  ];
+  sops.templates."radarr.env".content = ''
+    RADARR__AUTH__APIKEY=${config.sops.placeholder.radarr-api-key}
+  '';
 
   services.radarr = {
     enable = true;

@@ -1,4 +1,5 @@
 {
+  config,
   hostName,
   inventory,
   lib,
@@ -11,10 +12,21 @@ let
   hostAddress = inventory.nodes.${hostName}.address;
 in
 {
+  sops.secrets.sonarr-api-key.restartUnits = [
+    "homepage-dashboard.service"
+    "sonarr.service"
+  ];
+
+  sops.templates."sonarr.env".content = ''
+    SONARR__AUTH__APIKEY=${config.sops.placeholder.sonarr-api-key}
+  '';
+
   services.sonarr = {
     enable = true;
     openFirewall = false;
     group = "media";
+
+    environmentFiles = [ config.sops.templates."sonarr.env".path ];
 
     settings.server = {
       inherit (sonarr) port;

@@ -9,6 +9,8 @@
       title = "AdGuard Home";
       icon = "adguard-home.svg";
       description = "DNS filtering and local rewrites";
+
+      widget.type = "adguard";
     };
   };
 
@@ -22,6 +24,8 @@
       title = "Bazarr";
       icon = "bazarr.svg";
       description = "Subtitle management";
+
+      widget.type = "bazarr";
     };
   };
 
@@ -47,6 +51,11 @@
       title = "Jellyfin";
       icon = "jellyfin.svg";
       description = "Movies, shows, and music";
+
+      widget = {
+        type = "jellyfin";
+        enableBlocks = true;
+      };
     };
   };
 
@@ -76,6 +85,8 @@
       title = "Prowlarr";
       icon = "prowlarr.svg";
       description = "Indexer management";
+
+      widget.type = "prowlarr";
     };
   };
 
@@ -120,6 +131,11 @@
       title = "Sonarr";
       icon = "sonarr.svg";
       description = "Series management";
+
+      widget = {
+        type = "sonarr";
+        enableQueue = true;
+      };
     };
   };
 

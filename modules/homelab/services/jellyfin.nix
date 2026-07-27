@@ -4,6 +4,8 @@ let
   hostAddress = inventory.nodes.${hostName}.address;
 in
 {
+  sops.secrets.jellyfin-api-key.restartUnits = [ "homepage-dashboard.service" ];
+
   services.jellyfin = {
     enable = true;
     openFirewall = true;

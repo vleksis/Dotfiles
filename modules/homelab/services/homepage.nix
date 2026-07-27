@@ -1,8 +1,18 @@
-{ inventory, lib, ... }:
+{
+  config,
+  inventory,
+  lib,
+  ...
+}:
 
 let
   homepage = inventory.services.homepage;
   dashboardServices = lib.filterAttrs (_name: service: service.dashboard.enable) inventory.services;
+  hasApiKey = serviceName: builtins.hasAttr "${serviceName}-api-key" config.sops.secrets;
+  apiKeyServices = lib.filterAttrs (
+    serviceName: service: service.dashboard ? widget && hasApiKey serviceName
+  ) dashboardServices;
+  environmentVariable = serviceName: "HOMEPAGE_FILE_${lib.toUpper serviceName}_API_KEY";
 in
 {
   services.homepage-dashboard = {
@@ -27,13 +37,27 @@ in
             inherit (service.dashboard) description icon;
           }
           // lib.optionalAttrs (service.dashboard ? widget) {
-            widget = service.dashboard.widget // {
-              inherit (service) url;
-              key = "{{HOMEPAGE_VAR_${lib.toUpper serviceName}_API_KEY}}";
-            };
+            widget =
+              service.dashboard.widget
+              // {
+                inherit (service) url;
+              }
+              // lib.optionalAttrs (hasApiKey serviceName) {
+                key = "{{${environmentVariable serviceName}}}";
+              };
           };
         }) dashboardServices;
       }
     ];
+  };
+
+  systemd.services.homepage-dashboard = {
+    environment = lib.mapAttrs' (
+      serviceName: _: lib.nameValuePair (environmentVariable serviceName) "%d/${serviceName}-api-key"
+    ) apiKeyServices;
+
+    serviceConfig.LoadCredential = lib.mapAttrsToList (
+      serviceName: _: "${serviceName}-api-key:${config.sops.secrets."${serviceName}-api-key".path}"
+    ) apiKeyServices;
   };
 }

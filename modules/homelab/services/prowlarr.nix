@@ -1,12 +1,23 @@
-{ inventory, ... }:
+{ config, inventory, ... }:
 
 let
   prowlarr = inventory.services.prowlarr;
 in
 {
+  sops.secrets.prowlarr-api-key.restartUnits = [
+    "homepage-dashboard.service"
+    "prowlarr.service"
+  ];
+
+  sops.templates."prowlarr.env".content = ''
+    PROWLARR__AUTH__APIKEY=${config.sops.placeholder.prowlarr-api-key}
+  '';
+
   services.prowlarr = {
     enable = true;
     openFirewall = false;
+
+    environmentFiles = [ config.sops.templates."prowlarr.env".path ];
 
     settings.server = {
       inherit (prowlarr) port;

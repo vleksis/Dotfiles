@@ -4,6 +4,8 @@ let
   bazarr = inventory.services.bazarr;
 in
 {
+  sops.secrets.bazarr-api-key.restartUnits = [ "homepage-dashboard.service" ];
+
   services.bazarr = {
     enable = true;
     openFirewall = false;
