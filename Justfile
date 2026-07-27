@@ -64,6 +64,7 @@ fmt:
 [group('ci')]
 lint:
     just --fmt --check
+    actionlint
     nix fmt -- --ci
     statix check . --ignore 'hardware/asus-rog-strix-g614ji/hardware-configuration.nix'
     deadnix --fail .
@@ -71,7 +72,7 @@ lint:
 [doc("Check the flake configuration")]
 [group('ci')]
 check-config:
-    nix flake check --all-systems
+    nix flake check --all-systems --keep-going
 
 ###################
 #      MACOS      #

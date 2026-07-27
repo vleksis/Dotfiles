@@ -9,7 +9,7 @@ permissions:
 
 jobs:
   check:
-    name: Flake check
+    name: Checks
     runs-on: ubuntu-latest
 
     steps:
@@ -17,7 +17,11 @@ jobs:
 
       - uses: DeterminateSystems/determinate-nix-action@v3
 
-      - run: nix flake check --keep-going
+      - name: Lint repository
+        run: nix shell --inputs-from . nixpkgs#just nixpkgs#actionlint nixpkgs#statix nixpkgs#deadnix --command just lint
+
+      - name: Check configuration
+        run: nix shell --inputs-from . nixpkgs#just --command just check-config
 
   mikasa:
     name: Mikasa (NixOS)
