@@ -8,6 +8,7 @@
       "homepage"
       "jellyfin"
       "media"
+      "miniflux"
       "prowlarr"
       "qbittorrent"
       "radarr"

@@ -13,13 +13,14 @@ let
       let
         definition = catalog.${serviceName};
         domain = if definition.proxy then "${serviceName}.${topDomain}" else null;
+        endpoint = if definition.port == null then null else "${node.address}:${toString definition.port}";
       in
       {
         name = serviceName;
         value = definition // {
           node = nodeName;
           inherit (node) address;
-          inherit domain;
+          inherit domain endpoint;
           url = if domain == null then null else "http://${domain}";
         };
       }

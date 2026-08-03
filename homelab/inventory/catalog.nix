@@ -75,6 +75,21 @@
     };
   };
 
+  miniflux = {
+    port = 20001;
+    proxy = true;
+
+    dashboard = {
+      enable = true;
+
+      title = "Miniflux";
+      icon = "miniflux.svg";
+      description = "Feed reader";
+
+      widget.type = "miniflux";
+    };
+  };
+
   prowlarr = {
     port = 9696;
     proxy = true;

@@ -15,7 +15,7 @@ in
       _serviceName: service:
       lib.nameValuePair service.url {
         extraConfig = ''
-          reverse_proxy ${service.address}:${toString service.port}
+          reverse_proxy ${service.endpoint}
         '';
       }
     ) proxyServices;
