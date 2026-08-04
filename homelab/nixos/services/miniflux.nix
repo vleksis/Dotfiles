@@ -4,8 +4,10 @@ let
   miniflux = inventory.services.miniflux;
 in
 {
-  sops.secrets.miniflux-admin-password = { };
-  sops.secrets.miniflux-api-key.restartUnits = [ "homepage-dashboard.service" ];
+  sops.secrets = {
+    miniflux-admin-password = { };
+    miniflux-api-key.restartUnits = [ "homepage-dashboard.service" ];
+  };
 
   sops.templates."miniflux-admin.env".content = ''
     ADMIN_USERNAME=admin
