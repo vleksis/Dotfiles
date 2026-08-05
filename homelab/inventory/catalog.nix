@@ -35,6 +35,19 @@
     dashboard.enable = false;
   };
 
+  convertx = {
+    port = 3001;
+    proxy = true;
+
+    dashboard = {
+      enable = true;
+
+      title = "ConvertX";
+      icon = "convertx.png";
+      description = "File conversion";
+    };
+  };
+
   homepage = {
     port = 8082;
     proxy = true;

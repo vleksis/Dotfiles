@@ -5,6 +5,7 @@
       "adguard"
       "bazarr"
       "caddy"
+      "convertx"
       "homepage"
       "jellyfin"
       "media"
