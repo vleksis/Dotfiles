@@ -48,6 +48,12 @@
     };
   };
 
+  flaresolverr = {
+    port = 8191;
+    proxy = false;
+    dashboard.enable = false;
+  };
+
   homepage = {
     port = 8082;
     proxy = true;

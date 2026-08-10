@@ -6,6 +6,7 @@
       "bazarr"
       "caddy"
       "convertx"
+      "flaresolverr"
       "homepage"
       "jellyfin"
       "media"

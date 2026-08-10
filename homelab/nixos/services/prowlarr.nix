@@ -2,6 +2,7 @@
 
 let
   prowlarr = inventory.services.prowlarr;
+  flaresolverrUnit = "flaresolverr.service";
 in
 {
   sops.secrets.prowlarr-api-key.restartUnits = [
@@ -27,7 +28,10 @@ in
 
   # Knaben's API stalls partway through HTTP/2 responses over the torrent VPN,
   # while the same requests complete normally over HTTP/1.1.
-  systemd.services.prowlarr.environment = {
-    DOTNET_SYSTEM_NET_HTTP_SOCKETSHTTPHANDLER_HTTP2SUPPORT = "0";
+  systemd.services.prowlarr = {
+    after = [ flaresolverrUnit ];
+    wants = [ flaresolverrUnit ];
+
+    environment.DOTNET_SYSTEM_NET_HTTP_SOCKETSHTTPHANDLER_HTTP2SUPPORT = "0";
   };
 }
