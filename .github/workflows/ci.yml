@@ -38,7 +38,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      - uses: DeterminateSystems/determinate-nix-action@v3.21.8
+      - uses: DeterminateSystems/determinate-nix-action@v3.21.9
 
       - run: nix shell --inputs-from . ${{ matrix.packages }} --command just ${{ matrix.recipe }}
 
@@ -49,7 +49,7 @@ jobs:
     steps:
       - uses: actions/checkout@v7
 
-      - uses: DeterminateSystems/determinate-nix-action@v3.21.8
+      - uses: DeterminateSystems/determinate-nix-action@v3.21.9
 
       - run: nix shell --inputs-from . nixpkgs#just --command just check-config
 
@@ -61,7 +61,7 @@ jobs:
     steps:
       - uses: actions/checkout@v7
 
-      - uses: DeterminateSystems/determinate-nix-action@v3.21.8
+      - uses: DeterminateSystems/determinate-nix-action@v3.21.9
 
       - uses: DeterminateSystems/magic-nix-cache-action@v14
         with:
@@ -79,7 +79,7 @@ jobs:
     steps:
       - uses: actions/checkout@v7
 
-      - uses: DeterminateSystems/determinate-nix-action@v3.21.8
+      - uses: DeterminateSystems/determinate-nix-action@v3.21.9
 
       - uses: DeterminateSystems/magic-nix-cache-action@v14
         with:
@@ -97,7 +97,7 @@ jobs:
     steps:
       - uses: actions/checkout@v7
 
-      - uses: DeterminateSystems/determinate-nix-action@v3.21.8
+      - uses: DeterminateSystems/determinate-nix-action@v3.21.9
 
       - uses: DeterminateSystems/magic-nix-cache-action@v14
         with:
