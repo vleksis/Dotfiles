@@ -19,6 +19,8 @@ in
     imports = [
       ../shared
 
+      ../../../modules/home-manager/nixos/development/cpp.nix
+
       ../../../modules/home-manager/nixos/desktop/applications.nix
       ../../../modules/home-manager/nixos/desktop/niri.nix
       ../../../modules/home-manager/nixos/desktop/noctalia.nix
