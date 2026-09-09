@@ -12,9 +12,10 @@ Directory names identify the underlying hardware and remain stable even when the
 
 ## Current hardware
 
-| Directory               | Physical machine          | Outputs           |
-| ----------------------- | ------------------------- | ----------------- |
-| `macbook-air-m4`        | Apple MacBook Air with M4 | `eren`            |
-| `asus-rog-strix-g614ji` | ASUS ROG Strix G614JI     | `mikasa`, `okabe` |
+| Directory                     | Physical machine          | Outputs           |
+| ----------------------------- | ------------------------- | ----------------- |
+| `macbook-air-m4`              | Apple MacBook Air with M4 | `eren`            |
+| `asus-rog-strix-g614ji`       | ASUS ROG Strix G614JI     | `mikasa`, `okabe` |
+| `raspberry-pi-4-model-b`      | Raspberry Pi 4 Model B    | `daru`            |
 
 Multiple outputs may share the same hardware profile, but they are not intended to be deployed simultaneously.

@@ -21,6 +21,7 @@ Personal workstations use character names from [Attack on Titan](https://en.wiki
 
 Homelab systems use character names from [Steins;Gate](https://en.wikipedia.org/wiki/Steins;Gate).
 
-| Output  | Platform       | Hardware                | Purpose       |
-| ------- | -------------- | ----------------------- | ------------- |
-| `okabe` | `x86_64-linux` | `asus-rog-strix-g614ji` | NixOS homelab |
+| Output  | Platform        | Hardware                 | Purpose                |
+| ------- | --------------- | ------------------------ | ---------------------- |
+| `daru`  | `aarch64-linux` | `raspberry-pi-4-model-b` | NixOS network services |
+| `okabe` | `x86_64-linux`  | `asus-rog-strix-g614ji`  | NixOS homelab          |

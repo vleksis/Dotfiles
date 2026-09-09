@@ -8,6 +8,8 @@ let
   homeDirectory = "/home/admin";
 in
 {
+  nix.settings.trusted-users = [ "admin" ];
+
   security.sudo.extraRules = [
     {
       users = [ "admin" ];

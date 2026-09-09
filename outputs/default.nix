@@ -10,6 +10,7 @@ let
 
   systems = [
     "aarch64-darwin"
+    "aarch64-linux"
     "x86_64-linux"
   ];
 in
@@ -21,6 +22,7 @@ in
   };
 
   nixosConfigurations = {
+    daru = import ./homelab/daru.nix outputInputs;
     mikasa = import ./personal/mikasa.nix outputInputs;
     okabe = import ./homelab/okabe.nix outputInputs;
   };
