@@ -25,12 +25,20 @@ rebuild *args:
 rebuild *args:
     sudo nixos-rebuild switch --flake "{{ root }}#${NIX_HOST:?NIX_HOST is not set}" {{ args }}
 
-[doc("Build and deploy the homelab configuration remotely")]
+[doc("Build and deploy one named homelab node remotely")]
 [group('macos')]
 [group('nix')]
 [macos]
-deploy-homelab node="okabe" *args:
+deploy-homelab-node node *args:
     nix run --inputs-from "{{ root }}" nixpkgs#nixos-rebuild -- switch --flake "{{ root }}#{{ node }}" --target-host "{{ node }}" --build-host "{{ node }}" --elevate=sudo {{ args }}
+
+[doc("Build and deploy every homelab node remotely")]
+[group('macos')]
+[group('nix')]
+[macos]
+deploy-homelab-all *args:
+    just deploy-homelab-node daru {{ args }}
+    just deploy-homelab-node okabe {{ args }}
 
 [doc("Update all flake inputs")]
 [group('nix')]
