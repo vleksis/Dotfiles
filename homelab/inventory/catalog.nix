@@ -173,12 +173,6 @@
     };
   };
 
-  ssh = {
-    port = 22;
-    proxy = false;
-    dashboard.enable = false;
-  };
-
   torrent-vpn = {
     port = null;
     proxy = false;

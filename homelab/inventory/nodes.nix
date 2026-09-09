@@ -1,6 +1,12 @@
 {
   okabe = {
     address = "192.168.31.200";
+
+    ssh = {
+      port = 22;
+      user = "admin";
+    };
+
     services = [
       "adguard"
       "bazarr"
@@ -15,7 +21,6 @@
       "qbittorrent"
       "radarr"
       "sonarr"
-      "ssh"
       "torrent-vpn"
     ];
   };

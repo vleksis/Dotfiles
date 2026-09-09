@@ -1,7 +1,7 @@
-{ inventory, ... }:
+{ inventory, nodeName, ... }:
 
 let
-  ssh = inventory.services.ssh;
+  ssh = inventory.nodes.${nodeName}.ssh;
 in
 {
   services.openssh = {

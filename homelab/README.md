@@ -6,7 +6,8 @@ concrete domain composition, not a collection of reusable NixOS modules.
 ## Layout
 
 - `inventory/` defines nodes, service metadata, and service placement.
-- `nixos/` implements homelab services and their SOPS integration.
+- `nixos/` implements common host infrastructure, homelab services, and their
+  SOPS integration.
 - `home-manager/` contains client-side configuration for accessing the homelab.
 - `packages/` contains packages used only by homelab services.
 
@@ -23,6 +24,10 @@ recipients.
 
 The service dispatcher imports modules by the names listed for each node, so
 the inventory name and module filename must match.
+
+Infrastructure required on every node, such as SSH, is imported directly by
+`nixos/default.nix` and configured from node metadata instead of the singleton
+service catalog.
 
 ## References
 

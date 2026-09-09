@@ -1,7 +1,10 @@
 _:
 
 {
-  imports = [ ./services ];
+  imports = [
+    ./services
+    ./ssh.nix
+  ];
 
   sops = {
     useSystemdActivation = true;

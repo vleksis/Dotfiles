@@ -1,4 +1,4 @@
-{ inventory, ... }:
+{ inventory, lib, ... }:
 
 {
   programs.ssh = {
@@ -6,14 +6,14 @@
     enableDefaultConfig = false;
     includes = [ "~/.ssh/config.local" ];
 
-    settings.okabe = {
-      HostName = inventory.nodes.okabe.address;
-      Port = inventory.services.ssh.port;
-      User = "admin";
+    settings = lib.mapAttrs (_nodeName: node: {
+      HostName = node.address;
+      Port = node.ssh.port;
+      User = node.ssh.user;
 
       IdentityFile = "~/.ssh/id_ed25519";
       IdentitiesOnly = true;
       ForwardAgent = false;
-    };
+    }) inventory.nodes;
   };
 }
