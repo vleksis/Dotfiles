@@ -28,7 +28,7 @@
       italic_font = "auto";
       bold_italic_font = "auto";
     }
-    // lib.optionalAttrs pkgs.stdenv.isDarwin {
+    // lib.optionalAttrs pkgs.stdenv.hostPlatform.isDarwin {
       macos_option_as_alt = "both";
     };
   };
