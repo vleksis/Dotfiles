@@ -11,35 +11,6 @@ root := justfile_directory()
 #       NIX       #
 ###################
 
-[doc("Rebuild the current macOS configuration")]
-[group('macos')]
-[group('nix')]
-[macos]
-rebuild *args:
-    sudo darwin-rebuild switch --flake "{{ root }}#${NIX_HOST:?NIX_HOST is not set}" {{ args }}
-
-[doc("Rebuild the current NixOS configuration")]
-[group('linux')]
-[group('nix')]
-[linux]
-rebuild *args:
-    sudo nixos-rebuild switch --flake "{{ root }}#${NIX_HOST:?NIX_HOST is not set}" {{ args }}
-
-[doc("Build and deploy one named homelab node remotely")]
-[group('macos')]
-[group('nix')]
-[macos]
-deploy-homelab-node node *args:
-    nix run --inputs-from "{{ root }}" nixpkgs#nixos-rebuild -- switch --flake "{{ root }}#{{ node }}" --target-host "{{ node }}" --build-host "{{ node }}" --elevate=sudo {{ args }}
-
-[doc("Build and deploy every homelab node remotely")]
-[group('macos')]
-[group('nix')]
-[macos]
-deploy-homelab-all *args:
-    just deploy-homelab-node daru {{ args }}
-    just deploy-homelab-node okabe {{ args }}
-
 [doc("Update all flake inputs")]
 [group('nix')]
 update:
@@ -99,8 +70,24 @@ check-config:
     nix flake check --all-systems --keep-going
 
 ###################
+#      NIXOS      #
+###################
+
+[doc("Rebuild the current NixOS configuration")]
+[group('nixos')]
+[linux]
+rebuild *args:
+    sudo nixos-rebuild switch --flake "{{ root }}#${NIX_HOST:?NIX_HOST is not set}" {{ args }}
+
+###################
 #      MACOS      #
 ###################
+
+[doc("Rebuild the current macOS configuration")]
+[group('macos')]
+[macos]
+rebuild *args:
+    sudo darwin-rebuild switch --flake "{{ root }}#${NIX_HOST:?NIX_HOST is not set}" {{ args }}
 
 [doc("Reset Launchpad to reindex applications")]
 [group('macos')]
@@ -108,3 +95,18 @@ check-config:
 reset-launchpad:
     defaults write com.apple.dock ResetLaunchPad -bool true
     killall Dock
+
+###################
+#     HOMELAB     #
+###################
+
+[doc("Build and deploy one named homelab node remotely")]
+[group('homelab')]
+deploy-homelab-node node *args:
+    nix run --inputs-from "{{ root }}" nixpkgs#nixos-rebuild -- switch --flake "{{ root }}#{{ node }}" --target-host "{{ node }}" --build-host "{{ node }}" --elevate=sudo {{ args }}
+
+[doc("Build and deploy every homelab node remotely")]
+[group('homelab')]
+deploy-homelab-all *args:
+    just deploy-homelab-node daru {{ args }}
+    just deploy-homelab-node okabe {{ args }}
