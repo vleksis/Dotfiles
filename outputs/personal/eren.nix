@@ -6,10 +6,13 @@
 }:
 
 nix-darwin.lib.darwinSystem {
+  specialArgs = { inherit inventory; };
+
   modules = [
     ../../hardware/macbook-air-m4
     ../../modules/system/darwin
     ../../users/vleksis/darwin
+    ../../homelab/clients/darwin.nix
 
     home-manager.darwinModules.home-manager
 

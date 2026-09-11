@@ -14,7 +14,7 @@
     ../../../modules/home-manager/shared/editors/vim.nix
     ../../../modules/home-manager/shared/editors/zed.nix
 
-    ../../../homelab/home-manager/client.nix
+    ../../../homelab/clients/ssh.nix
 
     ../../../modules/home-manager/shared/terminal/kitty.nix
 

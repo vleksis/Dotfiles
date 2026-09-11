@@ -28,6 +28,7 @@ in
         upstream_dns = [
           "https://cloudflare-dns.com/dns-query"
           "https://dns.quad9.net/dns-query"
+          "[/cache.nixos.org/]1.1.1.1"
         ];
 
         bootstrap_dns = [

@@ -7,7 +7,10 @@
       user = "admin";
     };
 
-    services = [ ];
+    services = [
+      "adguard"
+      "caddy"
+    ];
   };
 
   okabe = {
@@ -19,9 +22,7 @@
     };
 
     services = [
-      "adguard"
       "bazarr"
-      "caddy"
       "convertx"
       "flaresolverr"
       "homepage"

@@ -2,6 +2,8 @@ _:
 
 {
   imports = [
+    ./dns.nix
+    ./reverse-proxy.nix
     ./services
     ./ssh.nix
   ];
