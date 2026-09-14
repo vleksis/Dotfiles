@@ -20,18 +20,11 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - name: Justfile
-            packages: nixpkgs#just
-            recipe: lint-just
-          - name: GitHub Actions
-            packages: nixpkgs#just nixpkgs#actionlint
-            recipe: lint-actions
+          - name: hooks
+            # The separate history scan replaces staged-only Gitleaks in CI.
+            command: env SKIP=gitleaks pre-commit run --all-files
           - name: secrets
-            packages: nixpkgs#just nixpkgs#gitleaks
-            recipe: lint-secrets
-          - name: Nix
-            packages: nixpkgs#just nixpkgs#statix nixpkgs#deadnix
-            recipe: lint-nix
+            command: just lint-secrets
 
     steps:
       - uses: actions/checkout@v7
@@ -40,7 +33,7 @@ jobs:
 
       - uses: DeterminateSystems/determinate-nix-action@v3.22.2
 
-      - run: nix shell --inputs-from . ${{ matrix.packages }} --command just ${{ matrix.recipe }}
+      - run: nix develop --command ${{ matrix.command }}
 
   check:
     name: Check configuration
