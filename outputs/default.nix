@@ -21,17 +21,16 @@ in
     system:
     let
       pkgs = nixpkgs.legacyPackages.${system};
+      gitHooks = inputs.git-hooks.lib.${system}.run {
+        src = ../.;
+        default_stages = [ "pre-commit" ];
+        hooks = import ./git-hooks.nix { inherit pkgs; };
+      };
     in
     {
       default = pkgs.mkShellNoCC {
-        packages = with pkgs; [
-          just
-          actionlint
-          git
-          gitleaks
-          statix
-          deadnix
-        ];
+        inherit (gitHooks) shellHook;
+        packages = gitHooks.enabledPackages;
       };
     }
   );
