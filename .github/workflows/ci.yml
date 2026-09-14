@@ -31,7 +31,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      - uses: DeterminateSystems/determinate-nix-action@v3.22.2
+      - uses: DeterminateSystems/determinate-nix-action@v3.22.3
 
       - run: nix develop --command ${{ matrix.command }}
 
@@ -42,7 +42,7 @@ jobs:
     steps:
       - uses: actions/checkout@v7
 
-      - uses: DeterminateSystems/determinate-nix-action@v3.22.2
+      - uses: DeterminateSystems/determinate-nix-action@v3.22.3
 
       - run: nix shell --inputs-from . nixpkgs#just --command just check-config
 
@@ -54,7 +54,7 @@ jobs:
     steps:
       - uses: actions/checkout@v7
 
-      - uses: DeterminateSystems/determinate-nix-action@v3.22.2
+      - uses: DeterminateSystems/determinate-nix-action@v3.22.3
 
       - uses: DeterminateSystems/magic-nix-cache-action@v14
         with:
@@ -72,7 +72,7 @@ jobs:
     steps:
       - uses: actions/checkout@v7
 
-      - uses: DeterminateSystems/determinate-nix-action@v3.22.2
+      - uses: DeterminateSystems/determinate-nix-action@v3.22.3
 
       - uses: DeterminateSystems/magic-nix-cache-action@v14
         with:
@@ -90,7 +90,7 @@ jobs:
     steps:
       - uses: actions/checkout@v7
 
-      - uses: DeterminateSystems/determinate-nix-action@v3.22.2
+      - uses: DeterminateSystems/determinate-nix-action@v3.22.3
 
       - uses: DeterminateSystems/magic-nix-cache-action@v14
         with:
@@ -108,7 +108,7 @@ jobs:
     steps:
       - uses: actions/checkout@v7
 
-      - uses: DeterminateSystems/determinate-nix-action@v3.22.2
+      - uses: DeterminateSystems/determinate-nix-action@v3.22.3
 
       - uses: DeterminateSystems/magic-nix-cache-action@v14
         with:
