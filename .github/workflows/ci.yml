@@ -11,6 +11,10 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   lint:
     name: Lint ${{ matrix.name }}
@@ -22,7 +26,7 @@ jobs:
         include:
           - name: hooks
             # The separate history scan replaces staged-only Gitleaks in CI.
-            command: env SKIP=gitleaks pre-commit run --all-files
+            command: env SKIP=gitleaks just lint-hooks
           - name: secrets
             command: just lint-secrets
 

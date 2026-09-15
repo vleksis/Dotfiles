@@ -38,31 +38,19 @@ fmt:
     nix fmt
     just --fmt
 
-[doc("Lint repository files")]
+[doc("Lint repository files and scan Git history")]
 [group('ci')]
-lint: lint-just lint-actions lint-secrets lint-nix
+lint: lint-hooks lint-secrets
 
-[doc("Check Justfile formatting")]
+[doc("Run shared hooks on all tracked files")]
 [group('ci')]
-lint-just:
-    just --fmt --check
-
-[doc("Lint GitHub Actions workflows")]
-[group('ci')]
-lint-actions:
-    actionlint
+lint-hooks:
+    pre-commit run --all-files
 
 [doc("Scan Git history for secrets")]
 [group('ci')]
 lint-secrets:
     gitleaks git --redact --no-banner --verbose .
-
-[doc("Lint Nix files")]
-[group('ci')]
-lint-nix:
-    nix fmt -- --ci
-    statix check . --ignore 'hardware/asus-rog-strix-g614ji/hardware-configuration.nix'
-    deadnix --fail .
 
 [doc("Check the flake configuration")]
 [group('ci')]
