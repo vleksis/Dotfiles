@@ -1,6 +1,12 @@
-_:
+{ config, pkgs, ... }:
 
 {
+  # Noctalia writes the theme; Home Manager keeps ownership of kitty.conf.
+  # globinclude also works before the first theme has been generated.
+  programs.kitty.extraConfig = ''
+    globinclude themes/noctalia.conf
+  '';
+
   programs.noctalia = {
     enable = true;
 
@@ -173,7 +179,6 @@ _:
             "gtk4"
             "ghostty"
             "helix"
-            "kitty"
             "niri"
             "qt"
             "starship"
@@ -195,6 +200,13 @@ _:
             "zathura"
             "hyprtoolkit"
           ];
+
+          # The built-in Kitty hook edits kitty.conf, which is read-only here.
+          user.kitty = {
+            input_path = "${config.programs.noctalia.package}/share/noctalia/assets/templates/kitty/kitty.conf";
+            output_path = "$XDG_CONFIG_HOME/kitty/themes/noctalia.conf";
+            post_hook = "${pkgs.procps}/bin/pkill -USR1 -x kitty || true";
+          };
         };
       };
 
