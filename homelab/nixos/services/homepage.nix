@@ -27,6 +27,7 @@ in
   sops.secrets = lib.mapAttrs' (
     serviceName: _:
     lib.nameValuePair "${serviceName}-api-key" {
+      sopsFile = ../../../secrets/homepage.yaml;
       restartUnits = [ "homepage-dashboard.service" ];
     }
   ) apiKeyServices;

@@ -10,6 +10,7 @@
     services = [
       "adguard"
       "caddy"
+      "homepage"
     ];
   };
 
@@ -25,7 +26,6 @@
       "bazarr"
       "convertx"
       "flaresolverr"
-      "homepage"
       "jellyfin"
       "media"
       "miniflux"

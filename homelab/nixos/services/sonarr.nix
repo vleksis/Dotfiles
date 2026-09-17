@@ -12,7 +12,10 @@ let
   hostAddress = inventory.nodes.${nodeName}.address;
 in
 {
-  sops.secrets.sonarr-api-key.restartUnits = [ "sonarr.service" ];
+  sops.secrets.sonarr-api-key = {
+    sopsFile = ../../../secrets/homepage.yaml;
+    restartUnits = [ "sonarr.service" ];
+  };
 
   sops.templates."sonarr.env".content = ''
     SONARR__AUTH__APIKEY=${config.sops.placeholder.sonarr-api-key}

@@ -69,8 +69,14 @@ let
 in
 {
   sops.secrets = {
-    torrent-vpn-private-key.restartUnits = secretRestartUnits;
-    torrent-vpn-preshared-key.restartUnits = secretRestartUnits;
+    torrent-vpn-private-key = {
+      sopsFile = ../../../secrets/homelab.yaml;
+      restartUnits = secretRestartUnits;
+    };
+    torrent-vpn-preshared-key = {
+      sopsFile = ../../../secrets/homelab.yaml;
+      restartUnits = secretRestartUnits;
+    };
   };
 
   users = {

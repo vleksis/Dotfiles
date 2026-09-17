@@ -4,7 +4,9 @@ let
   miniflux = inventory.services.miniflux;
 in
 {
-  sops.secrets.miniflux-admin-password = { };
+  sops.secrets.miniflux-admin-password = {
+    sopsFile = ../../../secrets/homelab.yaml;
+  };
 
   sops.templates."miniflux-admin.env".content = ''
     ADMIN_USERNAME=admin

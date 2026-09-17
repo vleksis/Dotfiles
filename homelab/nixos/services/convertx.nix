@@ -9,7 +9,10 @@ let
   dataDirectory = "/var/lib/convertx";
 in
 {
-  sops.secrets.convertx-jwt-secret.restartUnits = [ "podman-convertx.service" ];
+  sops.secrets.convertx-jwt-secret = {
+    sopsFile = ../../../secrets/homelab.yaml;
+    restartUnits = [ "podman-convertx.service" ];
+  };
 
   sops.templates."convertx.env".content = ''
     JWT_SECRET=${config.sops.placeholder.convertx-jwt-secret}
