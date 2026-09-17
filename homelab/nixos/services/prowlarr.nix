@@ -5,10 +5,7 @@ let
   flaresolverrUnit = "flaresolverr.service";
 in
 {
-  sops.secrets.prowlarr-api-key.restartUnits = [
-    "homepage-dashboard.service"
-    "prowlarr.service"
-  ];
+  sops.secrets.prowlarr-api-key.restartUnits = [ "prowlarr.service" ];
 
   sops.templates."prowlarr.env".content = ''
     PROWLARR__AUTH__APIKEY=${config.sops.placeholder.prowlarr-api-key}

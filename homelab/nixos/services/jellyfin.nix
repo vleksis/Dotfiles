@@ -5,8 +5,6 @@ let
   socksPort = inventory.services.torrent-vpn.socksPort;
 in
 {
-  sops.secrets.jellyfin-api-key.restartUnits = [ "homepage-dashboard.service" ];
-
   services.jellyfin = {
     enable = true;
     openFirewall = true;

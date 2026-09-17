@@ -9,10 +9,7 @@ let
   radarr = inventory.services.radarr;
 in
 {
-  sops.secrets.radarr-api-key.restartUnits = [
-    "homepage-dashboard.service"
-    "radarr.service"
-  ];
+  sops.secrets.radarr-api-key.restartUnits = [ "radarr.service" ];
 
   sops.templates."radarr.env".content = ''
     RADARR__AUTH__APIKEY=${config.sops.placeholder.radarr-api-key}

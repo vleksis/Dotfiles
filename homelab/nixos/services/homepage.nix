@@ -8,13 +8,29 @@
 let
   homepage = inventory.services.homepage;
   dashboardServices = lib.filterAttrs (_name: service: service.dashboard.enable) inventory.services;
-  hasApiKey = serviceName: builtins.hasAttr "${serviceName}-api-key" config.sops.secrets;
+  # Widget credentials belong to Homepage, regardless of where each service runs.
+  apiKeyServiceNames = [
+    "bazarr"
+    "jellyfin"
+    "miniflux"
+    "prowlarr"
+    "radarr"
+    "sonarr"
+  ];
+  hasApiKey = serviceName: builtins.elem serviceName apiKeyServiceNames;
   apiKeyServices = lib.filterAttrs (
     serviceName: service: service.dashboard ? widget && hasApiKey serviceName
   ) dashboardServices;
   environmentVariable = serviceName: "HOMEPAGE_FILE_${lib.toUpper serviceName}_API_KEY";
 in
 {
+  sops.secrets = lib.mapAttrs' (
+    serviceName: _:
+    lib.nameValuePair "${serviceName}-api-key" {
+      restartUnits = [ "homepage-dashboard.service" ];
+    }
+  ) apiKeyServices;
+
   services.homepage-dashboard = {
     enable = true;
     listenPort = homepage.port;
