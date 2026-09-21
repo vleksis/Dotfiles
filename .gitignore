@@ -23,4 +23,5 @@
 .DS_Store
 Thumbs.db
 
-/local
+/local/*
+!/local/.gitkeep
