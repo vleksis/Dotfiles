@@ -9,7 +9,7 @@ let
     let
       definition = catalog.${serviceName};
       domain = if definition.proxy then "${serviceName}.${topDomain}" else null;
-      endpoint = if definition.port == null then null else "${address}:${toString definition.port}";
+      endpoint = "${address}:${toString definition.port}";
     in
     definition
     // {
