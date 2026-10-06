@@ -2,7 +2,7 @@
 
 let
   flaresolverr = inventory.services.flaresolverr;
-  torrentVpn = inventory.services."torrent-vpn";
+  torrentVpn = inventory.infrastructure."torrent-vpn";
   vpnProxyUnit = "torrent-vpn-proxy.service";
 in
 {

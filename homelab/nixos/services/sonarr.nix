@@ -8,7 +8,7 @@
 
 let
   sonarr = inventory.services.sonarr;
-  torrentVpn = inventory.services."torrent-vpn";
+  torrentVpn = inventory.infrastructure."torrent-vpn";
   hostAddress = inventory.nodes.${nodeName}.address;
 in
 {

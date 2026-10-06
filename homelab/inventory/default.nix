@@ -2,6 +2,7 @@ let
   topDomain = "home.arpa";
   nodes = import ./nodes.nix;
   catalog = import ./catalog.nix;
+  infrastructure = import ./infrastructure.nix;
 
   resolveService =
     serviceName: address:
@@ -30,6 +31,6 @@ let
   ) (builtins.attrNames nodes);
 in
 {
-  inherit topDomain nodes;
+  inherit topDomain nodes infrastructure;
   services = builtins.listToAttrs servicePlacements;
 }

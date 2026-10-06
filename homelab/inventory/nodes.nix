@@ -27,13 +27,11 @@
       "convertx"
       "flaresolverr"
       "jellyfin"
-      "media"
       "miniflux"
       "prowlarr"
       "qbittorrent"
       "radarr"
       "sonarr"
-      "torrent-vpn"
     ];
   };
 

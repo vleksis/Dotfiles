@@ -17,6 +17,8 @@ nixpkgs.lib.nixosSystem {
     ../../modules/system/nixos
     ../../users/admin
     ../../homelab/nixos
+    ../../homelab/nixos/services/media.nix
+    ../../homelab/nixos/services/torrent-vpn.nix
 
     home-manager.nixosModules.home-manager
     sops-nix.nixosModules.sops

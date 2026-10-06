@@ -7,8 +7,8 @@
 
 let
   qbittorrent = inventory.services.qbittorrent;
-  media = inventory.services.media;
-  torrentVpn = inventory.services."torrent-vpn";
+  media = inventory.infrastructure.media;
+  torrentVpn = inventory.infrastructure."torrent-vpn";
   configFile = "/var/lib/qBittorrent/qBittorrent/config/qBittorrent.conf";
   configureQbittorrent = pkgs.writeShellScript "configure-qbittorrent" ''
     if [[ ! -e ${lib.escapeShellArg configFile} ]]; then

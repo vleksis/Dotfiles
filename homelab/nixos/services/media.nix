@@ -1,7 +1,7 @@
 { inventory, pkgs, ... }:
 
 let
-  media = inventory.services.media;
+  media = inventory.infrastructure.media;
   validateMovieAudio = pkgs.callPackage ../../packages/validate-movie-audio.nix { };
 in
 {

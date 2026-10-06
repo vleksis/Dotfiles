@@ -7,7 +7,7 @@
 }:
 
 let
-  torrentVpn = inventory.services."torrent-vpn";
+  torrentVpn = inventory.infrastructure."torrent-vpn";
   inherit (torrentVpn) interface;
   tunnelAddress = "10.8.1.10";
   routingTable = "51820";

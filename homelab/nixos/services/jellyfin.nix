@@ -2,7 +2,7 @@
 
 let
   hostAddress = inventory.nodes.${nodeName}.address;
-  socksPort = inventory.services.torrent-vpn.socksPort;
+  socksPort = inventory.infrastructure.torrent-vpn.socksPort;
 in
 {
   services.jellyfin = {

@@ -109,22 +109,6 @@
     };
   };
 
-  media = {
-    port = null;
-    proxy = false;
-    dashboard.enable = false;
-
-    paths = {
-      root = "/srv/media";
-      downloads = "/srv/media/downloads/movies";
-      library = "/srv/media/library/movies";
-      series = {
-        downloads = "/srv/media/downloads/series";
-        library = "/srv/media/library/series";
-      };
-    };
-  };
-
   miniflux = {
     port = 20001;
     proxy = true;
@@ -202,14 +186,5 @@
         enableQueue = true;
       };
     };
-  };
-
-  torrent-vpn = {
-    port = null;
-    proxy = false;
-    dashboard.enable = false;
-
-    interface = "awg-qbt";
-    socksPort = 1080;
   };
 }
