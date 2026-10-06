@@ -8,6 +8,9 @@
 let
   homepage = inventory.services.homepage;
   dashboardServices = lib.filterAttrs (_name: service: service.dashboard.enable) inventory.services;
+  dashboardGroups = lib.groupBy (
+    serviceName: dashboardServices.${serviceName}.dashboard.group or "Homelab"
+  ) (builtins.attrNames dashboardServices);
   # Widget credentials belong to Homepage, regardless of where each service runs.
   apiKeyServiceNames = [
     "bazarr"
@@ -45,9 +48,13 @@ in
       statusStyle = "dot";
     };
 
-    services = [
-      {
-        Homelab = lib.mapAttrsToList (serviceName: service: {
+    services = lib.mapAttrsToList (group: serviceNames: {
+      "${group}" = map (
+        serviceName:
+        let
+          service = dashboardServices.${serviceName};
+        in
+        {
           "${service.dashboard.title}" = {
             href = service.url;
             siteMonitor = service.url;
@@ -63,9 +70,9 @@ in
                 key = "{{${environmentVariable serviceName}}}";
               };
           };
-        }) dashboardServices;
-      }
-    ];
+        }
+      ) serviceNames;
+    }) dashboardGroups;
   };
 
   systemd.services.homepage-dashboard = {

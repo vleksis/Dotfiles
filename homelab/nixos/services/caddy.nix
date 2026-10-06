@@ -15,7 +15,9 @@ in
       _serviceName: service:
       lib.nameValuePair service.url {
         extraConfig = ''
-          reverse_proxy ${service.endpoint}
+          reverse_proxy ${service.endpoint} {
+            ${lib.optionalString (service.proxyUseUpstreamHost or false) "header_up Host {upstream_hostport}"}
+          }
         '';
       }
     ) proxyServices;

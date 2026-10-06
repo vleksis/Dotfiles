@@ -1,4 +1,35 @@
 {
+  # INFRA
+  router = {
+    port = 80;
+    proxy = true;
+    proxyUseUpstreamHost = true;
+
+    dashboard = {
+      enable = true;
+      group = "Network";
+
+      title = "Router";
+      icon = "mdi-router-wireless";
+      description = "Xiaomi router";
+    };
+  };
+
+  switch = {
+    port = 80;
+    proxy = true;
+
+    dashboard = {
+      enable = true;
+      group = "Network";
+
+      title = "Switch";
+      icon = "mdi-network";
+      description = "TP-Link TL-SG108E";
+    };
+  };
+
+  # SERVICES
   adguard = {
     port = 3000;
     proxy = true;

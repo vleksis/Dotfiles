@@ -5,7 +5,7 @@ concrete domain composition, not a collection of reusable NixOS modules.
 
 ## Layout
 
-- `inventory/` defines nodes, service metadata, and service placement.
+- `inventory/` defines nodes, network devices, service metadata, and service placement.
 - `clients/` configures machines and user environments that access the homelab.
 - `nixos/` implements common host infrastructure, homelab services, and their
   SOPS integration.
