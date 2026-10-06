@@ -36,4 +36,14 @@
       "torrent-vpn"
     ];
   };
+
+  router = {
+    address = "192.168.31.1";
+    services = [ "router" ];
+  };
+
+  switch = {
+    address = "192.168.31.203";
+    services = [ "switch" ];
+  };
 }

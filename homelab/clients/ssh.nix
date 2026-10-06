@@ -1,5 +1,8 @@
 { inventory, lib, ... }:
 
+let
+  sshNodes = lib.filterAttrs (_nodeName: node: node ? ssh) inventory.nodes;
+in
 {
   programs.ssh = {
     enable = true;
@@ -14,6 +17,6 @@
       IdentityFile = "~/.ssh/id_ed25519";
       IdentitiesOnly = true;
       ForwardAgent = false;
-    }) inventory.nodes;
+    }) sshNodes;
   };
 }

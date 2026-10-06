@@ -5,7 +5,9 @@ concrete domain composition, not a collection of reusable NixOS modules.
 
 ## Layout
 
-- `inventory/` defines nodes, network devices, service metadata, and service placement.
+- `inventory/nodes.nix` defines servers and network equipment, their addresses,
+  and service placement. Optional SSH settings generate client entries.
+- `inventory/catalog.nix` defines service metadata, including proxy and dashboard settings.
 - `clients/` configures machines and user environments that access the homelab.
 - `nixos/` implements common host infrastructure, homelab services, and their
   SOPS integration.
@@ -23,16 +25,20 @@ Encrypted values live in two files, with recipients controlled by `.sops.yaml`:
 
 1. Add its metadata to `inventory/catalog.nix`.
 2. Place it on a node in `inventory/nodes.nix`.
-3. Add a same-named NixOS module under `nixos/services/`.
+3. For services managed by NixOS, add a same-named module under `nixos/services/`.
 4. If it needs a secret, declare the SOPS secret in that service module and add
    the encrypted value.
 
-The service dispatcher imports modules by the names listed for each node, so
-the inventory name and module filename must match.
+On NixOS nodes, the service dispatcher imports modules by the names listed for
+that node, so the inventory name and module filename must match. Router and switch
+management interfaces only need catalog entries and placement in `nodes.nix`.
 
-Infrastructure required on every node, such as SSH, is imported directly by
+Infrastructure required on every NixOS node, such as SSH, is imported directly by
 `nixos/default.nix` and configured from node metadata instead of the singleton
 service catalog.
+
+NixOS outputs and deployment targets are declared explicitly; adding a node to
+the inventory does not make it a NixOS deployment target.
 
 ## References
 
