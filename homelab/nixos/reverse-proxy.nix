@@ -8,7 +8,7 @@
 let
   node = inventory.nodes.${nodeName};
   caddy = inventory.services.caddy;
-  proxyUpstreams = builtins.filter (service: service.proxy && service.node != caddy.node) (
+  proxyUpstreams = builtins.filter (service: service.proxy.enable && service.node != caddy.node) (
     map (serviceName: inventory.services.${serviceName}) node.services
   );
 in

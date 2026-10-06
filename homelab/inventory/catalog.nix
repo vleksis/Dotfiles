@@ -2,8 +2,11 @@
   # INFRA
   router = {
     port = 80;
-    proxy = true;
-    proxyUseUpstreamHost = true;
+    proxy = {
+      enable = true;
+      subdomain = "router";
+      useUpstreamHost = true;
+    };
 
     dashboard = {
       enable = true;
@@ -17,7 +20,10 @@
 
   switch = {
     port = 80;
-    proxy = true;
+    proxy = {
+      enable = true;
+      subdomain = "switch";
+    };
 
     dashboard = {
       enable = true;
@@ -32,7 +38,10 @@
   # SERVICES
   adguard = {
     port = 3000;
-    proxy = true;
+    proxy = {
+      enable = true;
+      subdomain = "adguard";
+    };
 
     dashboard = {
       enable = true;
@@ -47,7 +56,10 @@
 
   bazarr = {
     port = 6767;
-    proxy = true;
+    proxy = {
+      enable = true;
+      subdomain = "bazarr";
+    };
 
     dashboard = {
       enable = true;
@@ -62,13 +74,18 @@
 
   caddy = {
     port = 80;
-    proxy = false;
+    proxy = {
+      enable = false;
+    };
     dashboard.enable = false;
   };
 
   convertx = {
     port = 3001;
-    proxy = true;
+    proxy = {
+      enable = true;
+      subdomain = "convertx";
+    };
 
     dashboard = {
       enable = true;
@@ -81,19 +98,27 @@
 
   flaresolverr = {
     port = 8191;
-    proxy = false;
+    proxy = {
+      enable = false;
+    };
     dashboard.enable = false;
   };
 
   homepage = {
     port = 8082;
-    proxy = true;
+    proxy = {
+      enable = true;
+      subdomain = "homepage";
+    };
     dashboard.enable = false;
   };
 
   jellyfin = {
     port = 8096;
-    proxy = true;
+    proxy = {
+      enable = true;
+      subdomain = "jellyfin";
+    };
 
     dashboard = {
       enable = true;
@@ -111,7 +136,10 @@
 
   miniflux = {
     port = 20001;
-    proxy = true;
+    proxy = {
+      enable = true;
+      subdomain = "miniflux";
+    };
 
     dashboard = {
       enable = true;
@@ -126,7 +154,10 @@
 
   prowlarr = {
     port = 9696;
-    proxy = true;
+    proxy = {
+      enable = true;
+      subdomain = "prowlarr";
+    };
 
     dashboard = {
       enable = true;
@@ -141,7 +172,10 @@
 
   qbittorrent = {
     port = 8080;
-    proxy = true;
+    proxy = {
+      enable = true;
+      subdomain = "qbittorrent";
+    };
 
     dashboard = {
       enable = true;
@@ -154,7 +188,10 @@
 
   radarr = {
     port = 7878;
-    proxy = true;
+    proxy = {
+      enable = true;
+      subdomain = "radarr";
+    };
 
     dashboard = {
       enable = true;
@@ -172,7 +209,10 @@
 
   sonarr = {
     port = 8989;
-    proxy = true;
+    proxy = {
+      enable = true;
+      subdomain = "sonarr";
+    };
 
     dashboard = {
       enable = true;

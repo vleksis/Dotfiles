@@ -2,7 +2,7 @@
 
 let
   caddy = inventory.services.caddy;
-  proxyServices = lib.filterAttrs (_name: service: service.proxy) inventory.services;
+  proxyServices = lib.filterAttrs (_name: service: service.proxy.enable) inventory.services;
 in
 {
   networking.resolvconf.useLocalResolver = true;

@@ -8,7 +8,7 @@ let
     serviceName: address:
     let
       definition = catalog.${serviceName};
-      domain = if definition.proxy then "${serviceName}.${topDomain}" else null;
+      domain = if definition.proxy.enable then "${definition.proxy.subdomain}.${topDomain}" else null;
       endpoint = "${address}:${toString definition.port}";
     in
     definition

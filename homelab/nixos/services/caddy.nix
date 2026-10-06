@@ -2,7 +2,7 @@
 
 let
   caddy = inventory.services.caddy;
-  proxyServices = lib.filterAttrs (_name: service: service.proxy) inventory.services;
+  proxyServices = lib.filterAttrs (_name: service: service.proxy.enable) inventory.services;
 in
 {
   services.caddy = {
@@ -16,7 +16,8 @@ in
       lib.nameValuePair service.url {
         extraConfig = ''
           reverse_proxy ${service.endpoint} {
-            ${lib.optionalString (service.proxyUseUpstreamHost or false) "header_up Host {upstream_hostport}"}
+            ${lib.optionalString (service.proxy.useUpstreamHost or false
+            ) "header_up Host {upstream_hostport}"}
           }
         '';
       }
