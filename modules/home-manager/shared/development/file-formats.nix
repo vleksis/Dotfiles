@@ -9,6 +9,7 @@
     yamlfmt
     yamllint
     markdown-oxide
+    protobuf
 
     actionlint
   ];
