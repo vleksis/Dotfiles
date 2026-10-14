@@ -26,6 +26,7 @@
     ../../../modules/home-manager/shared/development/just.nix
     ../../../modules/home-manager/shared/development/lua.nix
     ../../../modules/home-manager/shared/development/nix.nix
+    ../../../modules/home-manager/shared/development/pre-commit.nix
     ../../../modules/home-manager/shared/development/python.nix
     ../../../modules/home-manager/shared/development/rust.nix
     ../../../modules/home-manager/shared/development/shell.nix
