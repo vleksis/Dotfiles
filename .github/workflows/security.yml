@@ -53,27 +53,37 @@ jobs:
         id: scan
         timeout-minutes: 30
         run: |
-          scan_status=0
-          nix shell --inputs-from . nixpkgs#vulnix --command \
-            vulnix --closure --json --verbose ./result > vulnix.json || scan_status=$?
+          # NVD downloads can time out; retry without accepting an invalid report.
+          for attempt in 1 2 3; do
+            echo "vulnix attempt ${attempt}/3"
+            scan_status=0
+            nix shell --inputs-from . nixpkgs#vulnix --command \
+              vulnix --closure --json --verbose ./result > vulnix.json || scan_status=$?
 
-          # Exit 2 can mean findings or a scanner error; require a matching JSON report.
-          # Variables in the single-quoted filters below belong to jq.
-          # shellcheck disable=SC2016
-          if ! nix shell --inputs-from . nixpkgs#jq --command \
-            jq -e --argjson status "$scan_status" '
-              type == "array" and
-              all(.[];
-                (.name | type == "string") and
-                (.affected_by | type == "array") and
-                (.affected_by | length > 0) and
-                all(.affected_by[]; type == "string")
-              ) and
-              (($status == 0 and length == 0) or ($status == 2 and length > 0))
-            ' vulnix.json > /dev/null; then
-            echo "::error::vulnix did not produce a valid report (exit ${scan_status})."
-            exit 1
-          fi
+            # Exit 2 can mean findings or a scanner error; require a matching JSON report.
+            # Variables in the single-quoted filters below belong to jq.
+            # shellcheck disable=SC2016
+            if nix shell --inputs-from . nixpkgs#jq --command \
+              jq -e --argjson status "$scan_status" '
+                type == "array" and
+                all(.[];
+                  (.name | type == "string") and
+                  (.affected_by | type == "array") and
+                  (.affected_by | length > 0) and
+                  all(.affected_by[]; type == "string")
+                ) and
+                (($status == 0 and length == 0) or ($status == 2 and length > 0))
+              ' vulnix.json > /dev/null; then
+              break
+            fi
+
+            if [ "$attempt" -eq 3 ]; then
+              echo "::error::vulnix did not produce a valid report after 3 attempts (exit ${scan_status})."
+              exit 1
+            fi
+            echo "::warning::vulnix attempt ${attempt} failed (exit ${scan_status}); retrying in $((attempt * 10)) seconds."
+            sleep "$((attempt * 10))"
+          done
 
           # shellcheck disable=SC2016
           nix shell --inputs-from . nixpkgs#jq --command \
