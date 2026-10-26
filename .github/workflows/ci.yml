@@ -36,7 +36,7 @@ jobs:
           fetch-depth: 0
           persist-credentials: false
 
-      - uses: DeterminateSystems/determinate-nix-action@d0c908e6cbe9f89f36ed8205a3ab6f092636916a  # v3.23.1
+      - uses: DeterminateSystems/determinate-nix-action@96c5ee93a9dddf2830d31e1da6ec719077336c28  # v3.23.3
 
       - run: nix develop --command ${{ matrix.command }}
 
@@ -49,7 +49,7 @@ jobs:
         with:
           persist-credentials: false
 
-      - uses: DeterminateSystems/determinate-nix-action@d0c908e6cbe9f89f36ed8205a3ab6f092636916a  # v3.23.1
+      - uses: DeterminateSystems/determinate-nix-action@96c5ee93a9dddf2830d31e1da6ec719077336c28  # v3.23.3
 
       - run: nix shell --inputs-from . nixpkgs#just --command just check-config
 
@@ -63,7 +63,7 @@ jobs:
         with:
           persist-credentials: false
 
-      - uses: DeterminateSystems/determinate-nix-action@d0c908e6cbe9f89f36ed8205a3ab6f092636916a  # v3.23.1
+      - uses: DeterminateSystems/determinate-nix-action@96c5ee93a9dddf2830d31e1da6ec719077336c28  # v3.23.3
 
       - uses: DeterminateSystems/magic-nix-cache-action@84c0677f58dcedf3b91f8223ce36a9ea5b3c84b7  # v15
         with:
@@ -83,7 +83,7 @@ jobs:
         with:
           persist-credentials: false
 
-      - uses: DeterminateSystems/determinate-nix-action@d0c908e6cbe9f89f36ed8205a3ab6f092636916a  # v3.23.1
+      - uses: DeterminateSystems/determinate-nix-action@96c5ee93a9dddf2830d31e1da6ec719077336c28  # v3.23.3
 
       - uses: DeterminateSystems/magic-nix-cache-action@84c0677f58dcedf3b91f8223ce36a9ea5b3c84b7  # v15
         with:
@@ -103,7 +103,7 @@ jobs:
         with:
           persist-credentials: false
 
-      - uses: DeterminateSystems/determinate-nix-action@d0c908e6cbe9f89f36ed8205a3ab6f092636916a  # v3.23.1
+      - uses: DeterminateSystems/determinate-nix-action@96c5ee93a9dddf2830d31e1da6ec719077336c28  # v3.23.3
 
       - uses: DeterminateSystems/magic-nix-cache-action@84c0677f58dcedf3b91f8223ce36a9ea5b3c84b7  # v15
         with:
@@ -123,7 +123,7 @@ jobs:
         with:
           persist-credentials: false
 
-      - uses: DeterminateSystems/determinate-nix-action@d0c908e6cbe9f89f36ed8205a3ab6f092636916a  # v3.23.1
+      - uses: DeterminateSystems/determinate-nix-action@96c5ee93a9dddf2830d31e1da6ec719077336c28  # v3.23.3
 
       - uses: DeterminateSystems/magic-nix-cache-action@84c0677f58dcedf3b91f8223ce36a9ea5b3c84b7  # v15
         with:
