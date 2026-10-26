@@ -1,0 +1,99 @@
+name: Security
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 6 * * 1"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  vulnix:
+    name: vulnix (${{ matrix.node }})
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: 120
+
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - node: okabe
+            runner: ubuntu-latest
+          - node: daru
+            runner: ubuntu-24.04-arm
+
+    env:
+      NODE: ${{ matrix.node }}
+
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7
+        with:
+          persist-credentials: false
+
+      - uses: DeterminateSystems/determinate-nix-action@d0c908e6cbe9f89f36ed8205a3ab6f092636916a  # v3.23.1
+
+      - uses: DeterminateSystems/magic-nix-cache-action@84c0677f58dcedf3b91f8223ce36a9ea5b3c84b7  # v15
+        with:
+          use-flakehub: false
+          use-gha-cache: true
+
+      - name: Build system
+        run: |
+          # Keep derivation metadata available even for cached packages.
+          nix derivation show --recursive \
+            ".#nixosConfigurations.${NODE}.config.system.build.toplevel" > /dev/null
+          nix build ".#nixosConfigurations.${NODE}.config.system.build.toplevel" --out-link result
+
+      - name: Scan runtime dependencies
+        id: scan
+        timeout-minutes: 30
+        run: |
+          scan_status=0
+          nix shell --inputs-from . nixpkgs#vulnix --command \
+            vulnix --closure --json --verbose ./result > vulnix.json || scan_status=$?
+
+          # Exit 2 can mean findings or a scanner error; require a matching JSON report.
+          # Variables in the single-quoted filters below belong to jq.
+          # shellcheck disable=SC2016
+          if ! nix shell --inputs-from . nixpkgs#jq --command \
+            jq -e --argjson status "$scan_status" '
+              type == "array" and
+              all(.[];
+                (.name | type == "string") and
+                (.affected_by | type == "array") and
+                (.affected_by | length > 0) and
+                all(.affected_by[]; type == "string")
+              ) and
+              (($status == 0 and length == 0) or ($status == 2 and length > 0))
+            ' vulnix.json > /dev/null; then
+            echo "::error::vulnix did not produce a valid report (exit ${scan_status})."
+            exit 1
+          fi
+
+          # shellcheck disable=SC2016
+          nix shell --inputs-from . nixpkgs#jq --command \
+            jq -r --arg node "$NODE" --arg commit "$GITHUB_SHA" '
+              "## vulnix: \($node)",
+              "",
+              "Commit: `\($commit)`",
+              "",
+              "- Package entries with findings: \(length)",
+              "- Unique CVEs: \([.[].affected_by[]] | unique | length)",
+              "",
+              "Findings are informational and may include false positives.",
+              "Full report: `vulnix-\($node)` artifact."
+            ' vulnix.json >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload report
+        if: ${{ !cancelled() && steps.scan.outcome != 'skipped' }}
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9  # v7.0.2
+        with:
+          name: vulnix-${{ matrix.node }}
+          path: vulnix.json
+          if-no-files-found: error
+          retention-days: 14
