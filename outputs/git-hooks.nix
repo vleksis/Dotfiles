@@ -30,6 +30,8 @@
     args = [ "--offline" ];
   };
 
+  shellcheck.enable = true;
+
   gitleaks = {
     enable = true;
     name = "Gitleaks staged changes";
