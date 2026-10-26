@@ -31,11 +31,12 @@ jobs:
             command: just lint-secrets
 
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7
         with:
           fetch-depth: 0
+          persist-credentials: false
 
-      - uses: DeterminateSystems/determinate-nix-action@v3.23.1
+      - uses: DeterminateSystems/determinate-nix-action@d0c908e6cbe9f89f36ed8205a3ab6f092636916a  # v3.23.1
 
       - run: nix develop --command ${{ matrix.command }}
 
@@ -44,9 +45,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7
+        with:
+          persist-credentials: false
 
-      - uses: DeterminateSystems/determinate-nix-action@v3.23.1
+      - uses: DeterminateSystems/determinate-nix-action@d0c908e6cbe9f89f36ed8205a3ab6f092636916a  # v3.23.1
 
       - run: nix shell --inputs-from . nixpkgs#just --command just check-config
 
@@ -56,11 +59,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7
+        with:
+          persist-credentials: false
 
-      - uses: DeterminateSystems/determinate-nix-action@v3.23.1
+      - uses: DeterminateSystems/determinate-nix-action@d0c908e6cbe9f89f36ed8205a3ab6f092636916a  # v3.23.1
 
-      - uses: DeterminateSystems/magic-nix-cache-action@v15
+      - uses: DeterminateSystems/magic-nix-cache-action@84c0677f58dcedf3b91f8223ce36a9ea5b3c84b7  # v15
         with:
           use-flakehub: false
           use-gha-cache: true
@@ -74,11 +79,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7
+        with:
+          persist-credentials: false
 
-      - uses: DeterminateSystems/determinate-nix-action@v3.23.1
+      - uses: DeterminateSystems/determinate-nix-action@d0c908e6cbe9f89f36ed8205a3ab6f092636916a  # v3.23.1
 
-      - uses: DeterminateSystems/magic-nix-cache-action@v15
+      - uses: DeterminateSystems/magic-nix-cache-action@84c0677f58dcedf3b91f8223ce36a9ea5b3c84b7  # v15
         with:
           use-flakehub: false
           use-gha-cache: true
@@ -92,11 +99,13 @@ jobs:
     runs-on: ubuntu-24.04-arm
 
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7
+        with:
+          persist-credentials: false
 
-      - uses: DeterminateSystems/determinate-nix-action@v3.23.1
+      - uses: DeterminateSystems/determinate-nix-action@d0c908e6cbe9f89f36ed8205a3ab6f092636916a  # v3.23.1
 
-      - uses: DeterminateSystems/magic-nix-cache-action@v15
+      - uses: DeterminateSystems/magic-nix-cache-action@84c0677f58dcedf3b91f8223ce36a9ea5b3c84b7  # v15
         with:
           use-flakehub: false
           use-gha-cache: true
@@ -110,11 +119,13 @@ jobs:
     runs-on: macos-latest
 
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7
+        with:
+          persist-credentials: false
 
-      - uses: DeterminateSystems/determinate-nix-action@v3.23.1
+      - uses: DeterminateSystems/determinate-nix-action@d0c908e6cbe9f89f36ed8205a3ab6f092636916a  # v3.23.1
 
-      - uses: DeterminateSystems/magic-nix-cache-action@v15
+      - uses: DeterminateSystems/magic-nix-cache-action@84c0677f58dcedf3b91f8223ce36a9ea5b3c84b7  # v15
         with:
           use-flakehub: false
           use-gha-cache: true

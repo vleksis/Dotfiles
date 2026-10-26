@@ -25,6 +25,11 @@
 
   actionlint.enable = true;
 
+  zizmor = {
+    enable = true;
+    args = [ "--offline" ];
+  };
+
   gitleaks = {
     enable = true;
     name = "Gitleaks staged changes";
