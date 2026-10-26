@@ -32,6 +32,19 @@
 
   shellcheck.enable = true;
 
+  yamllint = {
+    enable = true;
+    excludes = [ "^secrets/" ];
+    settings.configuration = ''
+      extends: default
+      rules:
+        document-start: disable
+        line-length: disable
+        truthy:
+          check-keys: false
+    '';
+  };
+
   gitleaks = {
     enable = true;
     name = "Gitleaks staged changes";
