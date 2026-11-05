@@ -56,6 +56,7 @@ in
         curl
         dig
         markdown-oxide
+        tmux
         wget
       ];
 
