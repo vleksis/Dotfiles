@@ -58,6 +58,8 @@ in
         markdown-oxide
         tmux
         wget
+        zip
+        ts
       ];
 
       sessionVariables = {
