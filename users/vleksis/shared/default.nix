@@ -21,6 +21,7 @@
     ../../../modules/home-manager/shared/development/codex.nix
     ../../../modules/home-manager/shared/development/containers.nix
     ../../../modules/home-manager/shared/development/cpp.nix
+    ../../../modules/home-manager/shared/development/devenv.nix
     ../../../modules/home-manager/shared/development/file-formats.nix
     ../../../modules/home-manager/shared/development/go.nix
     ../../../modules/home-manager/shared/development/just.nix
