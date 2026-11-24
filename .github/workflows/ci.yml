@@ -51,27 +51,12 @@ jobs:
 
       - uses: DeterminateSystems/determinate-nix-action@16f94ba7aae399b9f9077c254b6719ec6de7e3e3  # v3.24.2
 
-      - run: nix shell --inputs-from . nixpkgs#just --command just check-config
-
-  mikasa:
-    name: Mikasa (NixOS)
-    needs: [lint, check]
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7
-        with:
-          persist-credentials: false
-
-      - uses: DeterminateSystems/determinate-nix-action@16f94ba7aae399b9f9077c254b6719ec6de7e3e3  # v3.24.2
-
-      - uses: DeterminateSystems/magic-nix-cache-action@84c0677f58dcedf3b91f8223ce36a9ea5b3c84b7  # v15
-        with:
-          use-flakehub: false
-          use-gha-cache: true
-
-      - name: Build Mikasa
-        run: nix build .#nixosConfigurations.mikasa.config.system.build.toplevel --no-link
+      # The host build jobs evaluate their own configurations. Checking the
+      # whole flake here would also evaluate Mikasa.
+      - name: Evaluate development shells and formatters
+        run: |
+          nix eval --json .#devShells --apply 'builtins.mapAttrs (_: builtins.mapAttrs (_: shell: shell.drvPath))'
+          nix eval --json .#formatter --apply 'builtins.mapAttrs (_: formatter: formatter.drvPath)'
 
   okabe:
     name: Okabe (NixOS)
