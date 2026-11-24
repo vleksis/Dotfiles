@@ -45,7 +45,7 @@ lint: lint-hooks lint-secrets
 [doc("Run shared hooks on all tracked files")]
 [group('ci')]
 lint-hooks:
-    pre-commit run --all-files
+    prek run --all-files
 
 [doc("Scan Git history for secrets")]
 [group('ci')]

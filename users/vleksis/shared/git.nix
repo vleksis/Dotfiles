@@ -1,6 +1,8 @@
-_:
+{ pkgs, ... }:
 
 {
+  home.packages = [ pkgs.prek ];
+
   programs.git.settings = {
     user.name = "vleksis";
     user.email = "vleksis@yandex.ru";

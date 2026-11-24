@@ -51,7 +51,13 @@
     package = pkgs.gitleaks;
     extraPackages = [ pkgs.git ];
     # The commit hook scans the index; just lint-secrets still scans history.
-    entry = "${pkgs.gitleaks}/bin/gitleaks git --staged --redact --no-banner";
+    args = [
+      "git"
+      "--pre-commit"
+      "--staged"
+      "--redact"
+      "--no-banner"
+    ];
     pass_filenames = false;
     always_run = true;
   };
